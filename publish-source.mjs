@@ -76,10 +76,27 @@ const advertised = git(
   ],
   true,
 ).stdout.trim();
-if (advertised)
-  throw Error(
-    "Remote source is not empty; preserve and reconcile before publishing.",
+if (advertised) {
+  const remoteHead = advertised.split(/\s/)[0];
+  git(
+    [
+      "fetch",
+      "--no-tags",
+      credential.remote_url,
+      `refs/heads/${credential.branch}`,
+    ],
+    true,
   );
+  const ancestry = git(
+    ["merge-base", "--is-ancestor", remoteHead, "HEAD"],
+    false,
+    true,
+  );
+  if (ancestry.status !== 0)
+    throw Error(
+      "Remote source advanced or diverged; reconcile before publishing.",
+    );
+}
 git(["add", "--all"]);
 git([
   "-c",
@@ -88,7 +105,7 @@ git([
   "user.email=sites@users.noreply.openai.com",
   "commit",
   "-m",
-  "Build editorial portfolio with accessible case studies",
+  "Redesign portfolio with interactive WebGL sculpture and scroll choreography",
 ]);
 const sha = git(["rev-parse", "HEAD"]).stdout.trim();
 git(

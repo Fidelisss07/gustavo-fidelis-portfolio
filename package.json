@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node server.mjs",
-    "check": "node --check dist/app.js && node --check dist/content.js && node verify.mjs"
+    "build": "node render-content.mjs",
+    "check": "node --check dist/app.js && node --check dist/sculpture.js && node --check dist/content.js && node verify.mjs"
   }
 }
