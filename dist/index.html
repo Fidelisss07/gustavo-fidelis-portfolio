@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Gustavo Fidelis — Desenvolvimento & produto digital</title>
+    <meta
+      name="description"
+      content="Gustavo Fidelis. Desenvolvimento web com React, Next.js e TypeScript. Conheça os projetos, as decisões técnicas e a trajetória de um estudante de Ciência da Computação na FIAP."
+    />
+    <meta name="theme-color" content="#111310" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23111310'/%3E%3Ctext x='8' y='44' font-family='Arial' font-size='32' font-weight='700' fill='%23d5ff70'%3Egf%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="content.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Pular para o conteúdo</a>
+    <header class="header">
+      <a class="wordmark" href="#inicio" aria-label="Gustavo Fidelis, início"
+        >gf<span aria-hidden="true">✳</span></a
+      >
+      <nav aria-label="Navegação principal">
+        <a href="#projetos">Projetos <sup>06</sup></a
+        ><a href="#sobre">Sobre</a><a href="#trajetoria">Trajetória</a>
+      </nav>
+      <a class="header-contact" href="#contato"
+        >Vamos conversar <span aria-hidden="true">↗</span></a
+      >
+    </header>
+    <main id="main">
+      <section class="hero wrap" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-top">
+          <p class="eyebrow">
+            GUSTAVO FIDELIS <span>/</span> DESENVOLVEDOR WEB
+          </p>
+          <p class="location">São Paulo, BR <span id="local-time"></span></p>
+        </div>
+        <div class="hero-main">
+          <div class="hero-copy">
+            <h1 id="hero-title">
+              Ideias ganham<br />forma.<br /><span class="accent"
+                >E código<span class="punctuation">.</span></span
+              >
+            </h1>
+            <div class="hero-bottom">
+              <p>
+                Da primeira linha à experiência final.<br />Construo produtos
+                digitais com atenção<br class="desktop-break" />
+                ao que acontece em cada detalhe.
+              </p>
+              <a
+                class="round-link"
+                href="#projetos"
+                aria-label="Explorar projetos"
+                ><span>Explorar<br />projetos</span
+                ><span class="round-arrow" aria-hidden="true">↓</span></a
+              >
+            </div>
+          </div>
+          <figure class="portrait">
+            <div class="portrait-frame">
+              <img
+                src="assets/foto-gustavo.webp"
+                alt="Retrato de Gustavo Fidelis"
+                width="800"
+                height="800"
+                fetchpriority="high"
+              /><span class="photo-cross cross-one" aria-hidden="true">+</span
+              ><span class="photo-cross cross-two" aria-hidden="true">+</span
+              ><span class="portrait-note">PESSOAS. IDEIAS. SOFTWARE.</span
+              ><span class="portrait-index">GF — 001</span>
+            </div>
+            <figcaption>
+              <span>Ciência da Computação <b>FIAP</b></span
+              ><span class="availability">Aberto a oportunidades</span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="hero-foot">
+          <span>APRENDER. CONSTRUIR. EVOLUIR.</span
+          ><a
+            href="assets/curriculo_gustavo_fidelis_final.pdf"
+            target="_blank"
+            rel="noopener"
+            >Currículo em PDF <span aria-hidden="true">↗</span></a
+          ><span>PORTFÓLIO / 2026</span>
+        </div>
+      </section>
+      <section
+        class="work-section wrap"
+        id="projetos"
+        aria-labelledby="work-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">01 / TRABALHOS SELECIONADOS</p>
+          <div>
+            <h2 id="work-title">
+              Do conceito.<br /><span class="muted">Para o mundo.</span>
+            </h2>
+            <p>
+              Interfaces são só o começo.<br />Explore o que existe por trás de
+              cada entrega.
+            </p>
+          </div>
+        </div>
+        <div class="project-grid" id="project-grid">
+          <article class="project-card" id="projeto-balu">
+            <button
+              class="project-visual visual-balu"
+              data-project="balu"
+              aria-label="Explorar estudo de caso de BaLu 3D"
+            >
+              <span class="visual-number">01 / FREELANCE / COMMERCE</span
+              ><span class="project-word" aria-hidden="true">MAKE.</span
+              ><img
+                src="assets/balu3d-logo.webp"
+                alt=""
+                width="320"
+                height="240"
+                loading="lazy"
+              /><span class="visual-action" aria-hidden="true"
+                >Explorar projeto <b>↗</b></span
+              >
+            </button>
+            <div class="project-meta">
+              <h3>BaLu 3D</h3>
+              <span>Next.js / TypeScript</span>
+            </div>
+            <p>Da impressão 3D à primeira compra.</p>
+            <div class="project-actions">
+              <button class="text-link" data-project="balu">
+                Decisões & detalhes <span aria-hidden="true">↗</span></button
+              ><a href="https://balu3d.com.br" target="_blank" rel="noopener"
+                >Visitar site ↗</a
+              >
+            </div>
+          </article>
+          <article class="project-card" id="projeto-amx">
+            <button
+              class="project-visual visual-amx"
+              data-project="amx"
+              aria-label="Explorar estudo de caso de AMXWatch"
+            >
+              <span class="visual-number">02 / PRODUTO / COMMERCE</span
+              ><span class="project-word" aria-hidden="true">TIME.</span
+              ><img
+                src="assets/amxwatch-logo.webp"
+                alt=""
+                width="320"
+                height="240"
+                loading="lazy"
+              /><span class="visual-action" aria-hidden="true"
+                >Explorar projeto <b>↗</b></span
+              >
+            </button>
+            <div class="project-meta">
+              <h3>AMXWatch</h3>
+              <span>Next.js / TypeScript</span>
+            </div>
+            <p>Precisão em cada etapa da compra.</p>
+            <div class="project-actions">
+              <button class="text-link" data-project="amx">
+                Decisões & detalhes <span aria-hidden="true">↗</span></button
+              ><a href="https://amxwatch.com.br" target="_blank" rel="noopener"
+                >Visitar site ↗</a
+              >
+            </div>
+          </article>
+          <article class="project-card" id="projeto-debugarena">
+            <button
+              class="project-visual visual-debug"
+              data-project="debugarena"
+              aria-label="Explorar estudo de caso de DebugArena"
+            >
+              <span class="visual-number">03 / EDTECH / OPEN SOURCE</span
+              ><span class="project-word" aria-hidden="true">SOLVE.</span
+              ><img
+                src="assets/debugarena-logo.webp"
+                alt=""
+                width="320"
+                height="240"
+                loading="lazy"
+              /><span class="visual-action" aria-hidden="true"
+                >Explorar projeto <b>↗</b></span
+              >
+            </button>
+            <div class="project-meta">
+              <h3>DebugArena</h3>
+              <span>React / TypeScript</span>
+            </div>
+            <p>Aprender a programar. Investigando bugs.</p>
+            <div class="project-actions">
+              <button class="text-link" data-project="debugarena">
+                Decisões & detalhes <span aria-hidden="true">↗</span></button
+              ><a
+                href="https://debugarena-omega.vercel.app"
+                target="_blank"
+                rel="noopener"
+                >Ver prévia ↗</a
+              >
+            </div>
+          </article>
+          <article class="project-card" id="projeto-acf">
+            <button
+              class="project-visual visual-acf"
+              data-project="acf"
+              aria-label="Explorar estudo de caso de ACF Performance"
+            >
+              <span class="visual-number">04 / AUTOMOTIVO / REDESIGN</span
+              ><span class="project-word" aria-hidden="true">DRIVE.</span
+              ><img
+                src="assets/acf-logo.webp"
+                alt=""
+                width="320"
+                height="240"
+                loading="lazy"
+              /><span class="visual-action" aria-hidden="true"
+                >Explorar projeto <b>↗</b></span
+              >
+            </button>
+            <div class="project-meta">
+              <h3>ACF Performance</h3>
+              <span>HTML / CSS</span>
+            </div>
+            <p>Performance também na experiência.</p>
+            <div class="project-actions">
+              <button class="text-link" data-project="acf">
+                Decisões & detalhes <span aria-hidden="true">↗</span></button
+              ><a
+                href="https://acf-reebranding-sage.vercel.app"
+                target="_blank"
+                rel="noopener"
+                >Ver prévia ↗</a
+              >
+            </div>
+          </article>
+          <article class="project-card" id="projeto-milecar">
+            <button
+              class="project-visual visual-mile"
+              data-project="milecar"
+              aria-label="Explorar estudo de caso de Milé Car Motors"
+            >
+              <span class="visual-number">05 / AUTOMOTIVO / REDESIGN</span
+              ><span class="project-word" aria-hidden="true">MOVE.</span
+              ><img
+                src="assets/milecar-logo.webp"
+                alt=""
+                width="320"
+                height="240"
+                loading="lazy"
+              /><span class="visual-action" aria-hidden="true"
+                >Explorar projeto <b>↗</b></span
+              >
+            </button>
+            <div class="project-meta">
+              <h3>Milé Car Motors</h3>
+              <span>HTML / CSS</span>
+            </div>
+            <p>Um novo olhar sobre o mercado automotivo.</p>
+            <div class="project-actions">
+              <button class="text-link" data-project="milecar">
+                Decisões & detalhes <span aria-hidden="true">↗</span></button
+              ><a
+                href="https://milecar.vercel.app"
+                target="_blank"
+                rel="noopener"
+                >Ver prévia ↗</a
+              >
+            </div>
+          </article>
+          <article class="project-card" id="projeto-tcar">
+            <button
+              class="project-visual visual-tcar"
+              data-project="tcar"
+              aria-label="Explorar estudo de caso de T-CAR Imports"
+            >
+              <span class="visual-number">06 / AUTOMOTIVO / REDESIGN</span
+              ><span class="project-word" aria-hidden="true">SHIFT.</span
+              ><img
+                src="assets/tcar-logo.webp"
+                alt=""
+                width="320"
+                height="240"
+                loading="lazy"
+              /><span class="visual-action" aria-hidden="true"
+                >Explorar projeto <b>↗</b></span
+              >
+            </button>
+            <div class="project-meta">
+              <h3>T-CAR Imports</h3>
+              <span>React / TypeScript</span>
+            </div>
+            <p>Uma nova interface. O mesmo contrato de API.</p>
+            <div class="project-actions">
+              <button class="text-link" data-project="tcar">
+                Decisões & detalhes <span aria-hidden="true">↗</span></button
+              ><a
+                href="https://tcar-rho.vercel.app"
+                target="_blank"
+                rel="noopener"
+                >Ver prévia ↗</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="about-section" id="sobre" aria-labelledby="about-title">
+        <div class="wrap about-layout">
+          <div>
+            <p class="eyebrow">02 / ALÉM DO CÓDIGO</p>
+            <div class="about-mark" aria-hidden="true">
+              g<span>f</span><small>EM CONSTANTE<br />CONSTRUÇÃO.</small>
+            </div>
+          </div>
+          <div class="about-copy">
+            <h2 id="about-title">
+              Curiosidade é o começo.<br /><span
+                >Construir é o próximo passo.</span
+              >
+            </h2>
+            <p>
+              Sou Gustavo Fidelis, estudante de Ciência da Computação na FIAP.
+              Gosto de entender como as coisas funcionam — e de transformar esse
+              entendimento em produtos que alguém pode usar.
+            </p>
+            <p>
+              Já desenvolvi duas lojas virtuais completas, incluindo um projeto
+              freelance para uma cliente externa. Do catálogo ao checkout,
+              trabalho conectando interface, dados e serviços.
+            </p>
+            <p>
+              Antes do software, veio o hardware: montagem e manutenção de
+              computadores de alta performance para eventos, com prazos que não
+              podiam esperar. Essa experiência trouxe atenção ao detalhe,
+              autonomia e responsabilidade pela entrega.
+            </p>
+            <div class="about-facts">
+              <div><strong>06</strong><span>Projetos apresentados</span></div>
+              <div><strong>02</strong><span>Lojas desenvolvidas</span></div>
+              <div><strong>09</strong><span>Certificados</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        class="craft-section wrap"
+        id="processo"
+        aria-labelledby="craft-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">03 / POR DENTRO DO TRABALHO</p>
+          <div>
+            <h2 id="craft-title">
+              O detalhe importa.<br /><span class="muted"
+                >Principalmente o invisível.</span
+              >
+            </h2>
+          </div>
+        </div>
+        <div class="craft-grid">
+          <div class="craft-intro">
+            <p>
+              Escolher uma tecnologia é só parte da decisão. O que me interessa
+              é entender o problema, as restrições e o que acontece quando algo
+              sai do esperado.
+            </p>
+            <a
+              class="text-link"
+              href="https://github.com/Fidelisss07"
+              target="_blank"
+              rel="noopener"
+              >Explorar meu GitHub ↗</a
+            >
+            <div class="stack">
+              <span>React</span><span>Next.js</span><span>TypeScript</span
+              ><span>Node.js</span><span>Supabase</span><span>Firebase</span
+              ><span>Tailwind CSS</span><span>Git</span>
+            </div>
+          </div>
+          <div class="principles">
+            <details open>
+              <summary>
+                <span>01</span> Tecnologia com contexto
+                <b aria-hidden="true">+</b>
+              </summary>
+              <p>
+                Firebase para reunir autenticação, dados e arquivos na BaLu 3D.
+                PostgreSQL com Supabase quando catálogo e pedidos pedem
+                relações, como na AMXWatch. A escolha acompanha o projeto.
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span>02</span> Atenção à experiência
+                <b aria-hidden="true">+</b>
+              </summary>
+              <p>
+                No DebugArena, uma sequência de 240 quadros precisa respeitar
+                memória, conexão e preferências de movimento. O carregamento é
+                controlado e há uma versão estática para quem precisa dela.
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span>03</span> IA com revisão humana
+                <b aria-hidden="true">+</b>
+              </summary>
+              <p>
+                Uso Claude Code como par de programação para implementar,
+                investigar bugs e revisar código. Organizo contexto e regras do
+                projeto, avalio as propostas e assumo as decisões técnicas.
+              </p>
+            </details>
+          </div>
+        </div>
+        <div class="lab">
+          <div class="lab-copy">
+            <p class="eyebrow">INTERAÇÃO / CHECKOUT</p>
+            <h3>Experimente<br />uma decisão de produto.</h3>
+            <p>
+              Altere a quantidade e o pagamento para explorar um resumo de
+              compra com desconto PIX. Uma demonstração simplificada do fluxo da
+              BaLu 3D.
+            </p>
+            <p class="lab-note">
+              Simulação local. Não processa pagamentos nem solicita dados
+              bancários.
+            </p>
+          </div>
+          <form class="checkout" id="checkout">
+            <div class="checkout-head">
+              <span>Miniatura em resina 8K</span><span>R$ 149,90 / un.</span>
+            </div>
+            <div class="checkout-row">
+              <label for="quantity">Quantidade</label>
+              <div class="quantity">
+                <button
+                  type="button"
+                  id="minus"
+                  aria-label="Diminuir quantidade"
+                >
+                  −</button
+                ><output id="quantity" aria-live="polite">1</output
+                ><button
+                  type="button"
+                  id="plus"
+                  aria-label="Aumentar quantidade"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <fieldset>
+              <legend>Forma de pagamento</legend>
+              <label
+                ><input type="radio" name="payment" value="pix" checked /> PIX
+                <span>5% de desconto</span></label
+              ><label
+                ><input type="radio" name="payment" value="card" /> Cartão
+                <span>Sem desconto</span></label
+              >
+            </fieldset>
+            <div class="checkout-total">
+              <span
+                >Total dos produtos<small
+                  >Frete não incluído nesta demonstração</small
+                ></span
+              ><output id="checkout-total" aria-live="polite">R$ 142,41</output>
+            </div>
+            <button class="solid-button" type="submit">
+              Simular pedido <span aria-hidden="true">↗</span>
+            </button>
+            <p id="checkout-status" role="status"></p>
+          </form>
+        </div>
+      </section>
+      <section
+        class="trajectory-section wrap"
+        id="trajetoria"
+        aria-labelledby="trajectory-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">04 / TRAJETÓRIA</p>
+          <div>
+            <h2 id="trajectory-title">
+              A base se constrói.<br /><span class="muted">Todos os dias.</span>
+            </h2>
+            <p>
+              Formação, experiência prática<br />e vontade de continuar
+              aprendendo.
+            </p>
+          </div>
+        </div>
+        <div class="timeline">
+          <article>
+            <span class="timeline-date"
+              >2026 — 2030 <small>Conclusão prevista</small></span
+            >
+            <div>
+              <span class="eyebrow">FORMAÇÃO ACADÊMICA</span>
+              <h3>Ciência da Computação</h3>
+              <p>FIAP · São Paulo</p>
+            </div>
+            <p>
+              Graduação iniciada em agosto de 2026. Fundamentos de computação,
+              algoritmos, estruturas de dados e engenharia de software.
+            </p>
+          </article>
+          <article>
+            <span class="timeline-date"
+              >2026 — 2027 <small>Contrato de aprendizagem</small></span
+            >
+            <div>
+              <span class="eyebrow">EXPERIÊNCIA PROFISSIONAL</span>
+              <h3>Jovem Aprendiz</h3>
+              <p>Associação de Ensino Social Profissionalizante</p>
+            </div>
+            <p>
+              Formação técnico-profissional em gestão, qualidade, atendimento e
+              serviços. Contrato de abril de 2026 a agosto de 2027.
+            </p>
+          </article>
+          <article>
+            <span class="timeline-date"
+              >2025 <small>Agosto — Outubro</small></span
+            >
+            <div>
+              <span class="eyebrow">EXPERIÊNCIA PROFISSIONAL</span>
+              <h3>Técnico de Informática</h3>
+              <p>SNE Eventos</p>
+            </div>
+            <p>
+              Gestão, configuração e manutenção de computadores de alta
+              performance para eventos. Hardware e sistemas operacionais sob
+              prazos críticos.
+            </p>
+          </article>
+        </div>
+        <div class="cert-head">
+          <h3>Aprendizado documentado.</h3>
+          <span>09 CERTIFICADOS / FIAP + DEV CLUB</span>
+        </div>
+        <div class="certificates" id="certificates">
+          <a
+            class="certificate"
+            href="assets/cert-fiap-sustentabilidade.webp"
+            data-certificate="0"
+            aria-label="Abrir certificado: Formação Social e Sustentabilidade"
+            ><span class="cert-number">01</span
+            ><span
+              ><strong>Formação Social e Sustentabilidade</strong
+              ><small>FIAP · 80 horas · 2026</small></span
+            ><span class="cert-arrow" aria-hidden="true">↗</span></a
+          ><a
+            class="certificate"
+            href="assets/cert-react.webp"
+            data-certificate="1"
+            aria-label="Abrir certificado: React"
+            ><span class="cert-number">02</span
+            ><span><strong>React</strong><small>Dev Club · 2026</small></span
+            ><span class="cert-arrow" aria-hidden="true">↗</span></a
+          ><a
+            class="certificate"
+            href="assets/cert-node.webp"
+            data-certificate="2"
+            aria-label="Abrir certificado: Node.js"
+            ><span class="cert-number">03</span
+            ><span><strong>Node.js</strong><small>Dev Club · 2026</small></span
+            ><span class="cert-arrow" aria-hidden="true">↗</span></a
+          ><a
+            class="certificate"
+            href="assets/cert-typescript.webp"
+            data-certificate="3"
+            aria-label="Abrir certificado: TypeScript — Back-end"
+            ><span class="cert-number">04</span
+            ><span
+              ><strong>TypeScript — Back-end</strong
+              ><small>Dev Club · 2026</small></span
+            ><span class="cert-arrow" aria-hidden="true">↗</span></a
+          ><a
+            class="certificate"
+            href="assets/cert-js-async.webp"
+            data-certificate="4"
+            aria-label="Abrir certificado: JavaScript pt. VI — Async/Await"
+            ><span class="cert-number">05</span
+            ><span
+              ><strong>JavaScript pt. VI — Async/Await</strong
+              ><small>Dev Club · 2026</small></span
+            ><span class="cert-arrow" aria-hidden="true">↗</span></a
+          ><a
+            class="certificate"
+            href="assets/cert-css-grid.webp"
+            data-certificate="5"
+            aria-label="Abrir certificado: CSS — Display Grid"
+            ><span class="cert-number">06</span
+            ><span
+              ><strong>CSS — Display Grid</strong
+              ><small>Dev Club · 2026</small></span
+            ><span class="cert-arrow" aria-hidden="true">↗</span></a
+          ><a
+            class="certificate"
+            href="assets/cert-javascript.webp"
+            data-certificate="6"
+            aria-label="Abrir certificado: JavaScript pt. V — A Nova Ordem de Dados"
+            ><span class="cert-number">07</span
+            ><span
+              ><strong>JavaScript pt. V — A Nova Ordem de Dados</strong
+              ><small>Dev Club · 2026</small></span
+            ><span class="cert-arrow" aria-hidden="true">↗</span></a
+          ><a
+            class="certificate"
+            href="assets/cert-css.webp"
+            data-certificate="7"
+            aria-label="Abrir certificado: CSS Intermediário"
+            ><span class="cert-number">08</span
+            ><span
+              ><strong>CSS Intermediário</strong
+              ><small>Dev Club · 2025</small></span
+            ><span class="cert-arrow" aria-hidden="true">↗</span></a
+          ><a
+            class="certificate"
+            href="assets/cert-git.webp"
+            data-certificate="8"
+            aria-label="Abrir certificado: Git &amp; GitHub"
+            ><span class="cert-number">09</span
+            ><span
+              ><strong>Git &amp; GitHub</strong
+              ><small>Dev Club · 2025</small></span
+            ><span class="cert-arrow" aria-hidden="true">↗</span></a
+          >
+        </div>
+      </section>
+      <section
+        class="contact-section"
+        id="contato"
+        aria-labelledby="contact-title"
+      >
+        <div class="wrap">
+          <p class="eyebrow">05 / VAMOS CONVERSAR</p>
+          <div class="contact-heading">
+            <h2 id="contact-title">
+              O próximo projeto<br />pode começar<br /><a
+                href="mailto:gufidelis116@gmail.com"
+                >com um olá. <span aria-hidden="true">↗</span></a
+              >
+            </h2>
+            <div>
+              <p>
+                Aberto a oportunidades,<br />colaborações e boas conversas<br />sobre
+                tecnologia.
+              </p>
+              <a
+                class="text-link"
+                href="assets/curriculo_gustavo_fidelis_final.pdf"
+                target="_blank"
+                rel="noopener"
+                >Conheça meu currículo ↗</a
+              >
+            </div>
+          </div>
+          <div class="contact-bottom">
+            <div class="contact-links">
+              <a href="mailto:gufidelis116@gmail.com"
+                >gufidelis116@gmail.com ↗</a
+              ><a
+                href="https://www.linkedin.com/in/gustavo-fidelis-b17051387/"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn ↗</a
+              ><a
+                href="https://github.com/Fidelisss07"
+                target="_blank"
+                rel="noopener"
+                >GitHub ↗</a
+              ><a href="tel:+5511970684205">+55 (11) 97068-4205</a>
+            </div>
+            <details class="contact-form-wrap">
+              <summary>
+                Prefere escrever por aqui? <span aria-hidden="true">+</span>
+              </summary>
+              <form
+                id="contact-form"
+                action="https://formspree.io/f/mwvzoyro"
+                method="POST"
+              >
+                <label for="name">Seu nome</label
+                ><input
+                  id="name"
+                  name="nome"
+                  autocomplete="name"
+                  required
+                  maxlength="120"
+                /><label for="email">E-mail</label
+                ><input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                  maxlength="254"
+                /><label for="message">Mensagem</label
+                ><textarea
+                  id="message"
+                  name="mensagem"
+                  rows="4"
+                  required
+                  maxlength="5000"
+                ></textarea>
+                <p class="form-note">
+                  Ao enviar, sua mensagem será encaminhada pelo Formspree.
+                </p>
+                <button type="submit" class="solid-button">
+                  Enviar mensagem ↗
+                </button>
+                <p id="form-status" role="status"></p>
+              </form>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer wrap">
+      <a class="wordmark" href="#inicio" aria-label="Voltar ao início"
+        >gf<span aria-hidden="true">✳</span></a
+      >
+      <p>© 2026 Gustavo Fidelis</p>
+      <a href="https://github.com/Fidelisss07" target="_blank" rel="noopener"
+        >GitHub ↗</a
+      ><a href="#inicio">Voltar ao topo ↑</a>
+    </footer>
+    <dialog id="detail-dialog" aria-labelledby="dialog-title">
+      <button class="dialog-close" type="button" aria-label="Fechar detalhes">
+        ✕
+      </button>
+      <div id="dialog-content"></div>
+    </dialog>
+  </body>
+</html>
