@@ -1,0 +1,291 @@
+/* Progressive scroll typography and independent preview disclosures. */
+.statement-line {
+  display: block;
+  perspective: 900px;
+}
+.statement-line > span {
+  display: inline-block;
+  padding: 0 0.04em 0.08em;
+}
+.scroll-enhanced .statement-line > span {
+  opacity: var(--line-opacity, 1);
+  transform: translate3d(0, var(--line-y, 0px), 0)
+    rotateX(var(--line-rotation, 0deg));
+  filter: blur(var(--line-blur, 0px));
+  transform-origin: 50% 100%;
+}
+.project-disclosure .project-row {
+  border-top: 1px solid #d7d9e1;
+  border-bottom: 0;
+}
+.project-list {
+  border-top: 0;
+}
+.project-list .project-disclosure {
+  margin-bottom: 0;
+}
+.project-list .project-disclosure:last-child {
+  border-bottom: 1px solid #d7d9e1;
+}
+.project-toggle {
+  border-radius: 50%;
+  min-width: 44px;
+  min-height: 44px;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+.project-toggle:hover {
+  background: #dfe6ff;
+  color: #164bea;
+}
+.project-row h3 button {
+  color: inherit;
+}
+.project-panel-content {
+  padding-top: 8px;
+}
+.project-panel-clip {
+  min-height: 0;
+  overflow: hidden;
+}
+.project-panel {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+.disclosures-ready .project-panel {
+  transition:
+    grid-template-rows 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s,
+    visibility 0s;
+}
+.disclosures-ready .project-disclosure:not(.is-expanded) .project-panel {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    grid-template-rows 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s,
+    visibility 0s 0.65s;
+}
+.project-panel .project-surface {
+  transition: transform 0.8s var(--ease);
+}
+.disclosures-ready .project-disclosure:not(.is-expanded) .project-surface {
+  transform: translateY(24px) scale(0.985);
+}
+.project-acf .project-surface > img {
+  object-position: 65% 50%;
+}
+.project-milecar .project-surface {
+  background: radial-gradient(ellipse at 75% 55%, #5c401d, #100e0b 70%);
+}
+.project-milecar .project-surface > img {
+  width: 95%;
+  left: 20%;
+  object-fit: contain;
+}
+.project-surface.brand-surface {
+  background: radial-gradient(ellipse at 75% 45%, #28204e, #100e1a 72%);
+}
+.project-tcar .project-surface.brand-surface {
+  background: radial-gradient(ellipse at 75% 45%, #544125, #100e0a 72%);
+}
+.project-surface.brand-surface > img {
+  width: 34%;
+  height: 65%;
+  inset: 17% 7% auto auto;
+  object-fit: contain;
+  border-radius: 24px;
+}
+.project-surface.brand-surface:after {
+  background: linear-gradient(90deg, #090912a8, transparent);
+}
+/* Independent light paths, a breathing core, and a restrained specular pass. */
+.system-visual {
+  perspective: 900px;
+}
+.system-aura {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #2359e329, transparent 68%);
+  animation: system-breathe 5s ease-in-out infinite;
+}
+.system-core {
+  overflow: hidden;
+  transform: translate(-50%, -50%) rotateX(var(--core-x, 0deg))
+    rotateY(var(--core-y, 0deg));
+  transition:
+    transform 0.55s var(--ease),
+    box-shadow 0.6s;
+  animation: core-energy 5s ease-in-out infinite;
+}
+.system-core:after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: linear-gradient(
+    110deg,
+    transparent 42%,
+    #b4cdff18 49%,
+    #ffffff28 50%,
+    transparent 57%
+  );
+  transform: translateX(-55%);
+  animation: core-sheen 8s ease-in-out infinite;
+}
+.orbital-spark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #cfdeff;
+  box-shadow:
+    0 0 7px #aacbff,
+    0 0 22px #477aff,
+    0 0 40px #477aff88;
+  offset-path: ellipse(50% 50% at 50% 50%);
+  offset-rotate: 0deg;
+  animation: orbit-travel 10s linear infinite;
+}
+.orbit-two .orbital-spark {
+  animation-duration: 14s;
+  animation-direction: reverse;
+}
+.orbital-spark.spark-echo {
+  width: 4px;
+  height: 4px;
+  opacity: 0.45;
+  animation-delay: -5s;
+}
+.orbit-two .spark-echo {
+  animation-delay: -7s;
+}
+.system-node {
+  animation: node-float 6s ease-in-out infinite;
+}
+.node-b {
+  animation-delay: -2s;
+}
+.node-c {
+  animation-delay: -4s;
+}
+.system-visual:not(.system-active) *,
+.motion-paused .system-visual * {
+  animation-play-state: paused !important;
+}
+.scroll-enhanced .system-visual {
+  opacity: var(--system-opacity, 1);
+  scale: var(--system-scale, 1);
+  filter: blur(var(--system-blur, 0px));
+}
+@keyframes orbit-travel {
+  to {
+    offset-distance: 100%;
+  }
+}
+@keyframes system-breathe {
+  50% {
+    opacity: 0.55;
+    scale: 1.16;
+  }
+}
+@keyframes core-energy {
+  50% {
+    box-shadow:
+      0 0 70px #367aff40,
+      inset 0 1px 1px #ffffff50;
+    border-color: #6585c6;
+  }
+}
+@keyframes core-sheen {
+  35%,
+  100% {
+    transform: translateX(55%);
+  }
+}
+@keyframes node-float {
+  50% {
+    translate: 0 -6px;
+    border-color: #526b9d;
+  }
+}
+.motion-paused .statement-line > span {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.motion-paused .system-visual {
+  opacity: 1;
+  scale: 1;
+  filter: none;
+}
+.motion-paused .project-panel,
+.motion-paused .project-surface {
+  transition: none !important;
+}
+@media (max-width: 700px) {
+  .project-disclosure .project-row {
+    gap: 8px;
+  }
+  .project-disclosure .project-row h3 {
+    font-size: clamp(17px, 4.8vw, 22px);
+  }
+  .project-disclosure .row-actions {
+    gap: 3px;
+  }
+  .project-list .project-surface {
+    aspect-ratio: 0.85;
+  }
+  .project-milecar .project-surface > img {
+    width: 130%;
+    left: -5%;
+    top: -16%;
+  }
+  .project-surface.brand-surface > img {
+    width: 44%;
+    height: 42%;
+    inset: 4% 28% auto;
+  }
+  .project-surface.brand-surface .project-cover-copy {
+    max-width: 90%;
+  }
+  .project-surface.brand-surface:after {
+    background: linear-gradient(0deg, #090912dd, transparent 75%);
+  }
+  .system-orbit {
+    max-width: 100%;
+  }
+  .system-aura {
+    width: 240px;
+    height: 240px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .statement-line > span,
+  .scroll-enhanced .statement-line > span {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .system-visual,
+  .scroll-enhanced .system-visual {
+    opacity: 1;
+    scale: 1;
+    filter: none;
+  }
+  .system-visual * {
+    animation: none !important;
+  }
+  .project-panel,
+  .project-panel .project-surface {
+    transition: none !important;
+  }
+}

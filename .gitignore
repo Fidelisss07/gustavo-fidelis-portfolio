@@ -1,4 +1,10 @@
 node_modules/
+.env
+.env.*
+!.env.example
+.lais-state.json
+lais/knowledge/*.md
+!lais/knowledge/README.md
 .sites-runtime/
 *.tar
 *.tar.gz

@@ -361,7 +361,7 @@ h1 {
   margin: 38px 0 70px;
   letter-spacing: -0.065em;
 }
-.statement > span {
+.statement-accent > span {
   background: linear-gradient(110deg, #1044ed, #6497ff);
   background-clip: text;
   color: transparent;
@@ -699,7 +699,7 @@ h1 {
   border-color: #252d42;
 }
 .system-orbit:after {
-  content: "";
+  content: none;
   position: absolute;
   width: 6px;
   height: 6px;

@@ -1,6 +1,6 @@
 # Gustavo Fidelis — Portfólio
 
-Portfólio autoral, estático e responsivo, com escultura 3D procedural em WebGL, coreografia de entrada e efeitos ligados à rolagem. HTML, CSS e JavaScript nativo, sem bibliotecas de interface ou dependências de execução.
+Portfólio autoral, estático e responsivo, com escultura 3D procedural em WebGL, coreografia de entrada e efeitos ligados à rolagem. Interface em HTML, CSS e JavaScript nativo; a assistente Laís usa o SDK oficial ElevenLabs carregado sob demanda.
 
 ## Executar
 
@@ -10,7 +10,7 @@ Requer Node.js 20 ou superior.
 npm run dev
 ```
 
-Abra http://127.0.0.1:4173. A pasta `dist` também pode ser servida por qualquer hospedagem estática. Não há etapa de compilação necessária.
+Abra http://127.0.0.1:4173. A pasta `dist` contém a versão pré-compilada e pode ser servida por qualquer hospedagem estática. Para recompilar mudanças no código da Laís, execute `npm ci` e `npm run build`.
 
 ## Conteúdo e estrutura
 
@@ -30,6 +30,10 @@ As informações foram extraídas do repositório público `Fidelisss07/Portifol
 
 ## Interações e acessibilidade
 
+Os seis projetos têm prévias independentes com controles +/−, estado anunciado e conteúdo recolhido fora da navegação por teclado. Os dois destaques começam abertos. Visitar o site e ler o estudo de caso são ações separadas. Sem JavaScript, todas as prévias permanecem disponíveis.
+
+A frase da abordagem é revelada linha por linha pela rolagem. O sistema orbital possui partículas em trajetórias elípticas, reflexo no núcleo e resposta ao ponteiro; para fora da tela, em aba oculta ou com movimento reduzido/pausado. Os estilos destas interações ficam em `dist/interactions.css`.
+
 Modais nativos com fechamento por Escape, contenção de foco e devolução de foco ao acionador. Navegação por âncoras, link para pular conteúdo, controles com rótulos e respeito a `prefers-reduced-motion`. Imagens têm dimensões reservadas e carregamento adiado quando fora da abertura.
 
 O objeto 3D responde ao ponteiro e à rolagem. A renderização é limitada a aproximadamente 30 quadros por segundo e a densidade de pixels a 1,5; para quando o objeto sai da tela, a aba fica oculta ou o movimento é pausado. Há fallback tipográfico quando WebGL não está disponível. O botão na abertura permite pausar os efeitos, e a preferência de movimento reduzido do dispositivo é respeitada automaticamente.
@@ -41,6 +45,8 @@ O checkout é uma simulação local: quantidade limitada a 1–10, desconto PIX 
 O formulário preserva o endpoint Formspree do site original. Possui validação, limite de espera, retorno de sucesso e alternativa de contato por e-mail. Nenhuma mensagem real foi enviada durante a verificação.
 
 ## Verificar
+
+A preparação da Laís está documentada em `lais/SETUP.md`. O agente permanece desativado até conectar a conta, a voz e a base aprovada. Execute `npm test` para os testes locais; nenhuma chamada paga é feita pelos testes.
 
 ```sh
 npm run check

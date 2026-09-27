@@ -37,6 +37,26 @@ function openProject(id) {
   );
 }
 document.addEventListener("click", (event) => {
+  const toggle = event.target.closest("[data-toggle-project]");
+  if (toggle) {
+    const article = toggle.closest(".project-disclosure");
+    const expanded = !article.classList.contains("is-expanded");
+    article.classList.toggle("is-expanded", expanded);
+    article.querySelector(".project-panel").inert = !expanded;
+    article.querySelectorAll("[data-toggle-project]").forEach((button) => {
+      button.setAttribute("aria-expanded", String(expanded));
+      if (button.classList.contains("project-toggle")) {
+        button.setAttribute(
+          "aria-label",
+          (expanded ? "Ocultar" : "Expandir") +
+            " prévia de " +
+            button.dataset.projectName,
+        );
+        button.querySelector("span").textContent = expanded ? "−" : "+";
+      }
+    });
+    scheduleScroll();
+  }
   const project = event.target.closest("[data-project]");
   if (project) openProject(project.dataset.project);
   const cert = event.target.closest("[data-certificate]");
@@ -167,9 +187,14 @@ motionButton.addEventListener("click", () => {
 });
 reducedMotion.addEventListener("change", syncMotion);
 document.body.classList.add("hero-ready");
+document.querySelectorAll(".project-disclosure").forEach((article) => {
+  article.querySelector(".project-panel").inert =
+    !article.classList.contains("is-expanded");
+});
+document.body.classList.add("disclosures-ready", "scroll-enhanced");
 
 const revealElements = document.querySelectorAll(
-  ".statement,.section-top,.feature-project,.engineering-heading,.engineering-columns article,.about-photo,.about-text,.trajectory-header,.timeline article,.cert-heading,.certificate",
+  ".section-top,.feature-project,.engineering-heading,.engineering-columns article,.about-photo,.about-text,.trajectory-header,.timeline article,.cert-heading,.certificate",
 );
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
@@ -195,10 +220,52 @@ const hero = document.querySelector(".hero");
 const projectImages = [...document.querySelectorAll(".project-surface > img")];
 const system = document.querySelector(".system-visual");
 const orbits = [...document.querySelectorAll(".system-orbit")];
+const statementLines = [...document.querySelectorAll(".statement-line")];
+const clamp = (value) => Math.max(0, Math.min(1, value));
+let systemVisible = false;
+const refreshSystemActivity = () =>
+  system.classList.toggle(
+    "system-active",
+    systemVisible && !document.hidden && !isMotionPaused(),
+  );
+const systemObserver = new IntersectionObserver(([entry]) => {
+  systemVisible = entry.isIntersecting;
+  refreshSystemActivity();
+});
+systemObserver.observe(system);
+document.addEventListener("visibilitychange", refreshSystemActivity);
+document.addEventListener("portfolio:motion", refreshSystemActivity);
+system.addEventListener("pointermove", (event) => {
+  if (isMotionPaused() || event.pointerType !== "mouse") return;
+  const rect = system.getBoundingClientRect();
+  system.style.setProperty(
+    "--core-x",
+    (-(event.clientY - rect.top - rect.height / 2) / rect.height) * 14 + "deg",
+  );
+  system.style.setProperty(
+    "--core-y",
+    ((event.clientX - rect.left - rect.width / 2) / rect.width) * 18 + "deg",
+  );
+});
+system.addEventListener("pointerleave", () => {
+  system.style.setProperty("--core-x", "0deg");
+  system.style.setProperty("--core-y", "0deg");
+});
 let scrollFrame = 0;
 function updateScroll() {
   scrollFrame = 0;
   const paused = isMotionPaused();
+  for (const line of statementLines) {
+    const rect = line.getBoundingClientRect();
+    const progress = paused
+      ? 1
+      : clamp((innerHeight * 0.9 - rect.top) / (innerHeight * 0.33));
+    const eased = 1 - Math.pow(1 - progress, 3);
+    line.style.setProperty("--line-opacity", String(eased));
+    line.style.setProperty("--line-y", (1 - eased) * 65 + "px");
+    line.style.setProperty("--line-rotation", (1 - eased) * 12 + "deg");
+    line.style.setProperty("--line-blur", (1 - eased) * 7 + "px");
+  }
   const heroProgress = Math.min(scrollY / hero.offsetHeight, 1);
   heroCopy.style.transform = paused
     ? ""
@@ -217,6 +284,12 @@ function updateScroll() {
   }
   const r = system.getBoundingClientRect();
   if (r.bottom > 0 && r.top < innerHeight) {
+    const entrance = paused
+      ? 1
+      : clamp((innerHeight * 0.95 - r.top) / (innerHeight * 0.42));
+    system.style.setProperty("--system-opacity", String(entrance));
+    system.style.setProperty("--system-scale", String(0.84 + entrance * 0.16));
+    system.style.setProperty("--system-blur", (1 - entrance) * 5 + "px");
     const progress = (innerHeight - r.top) / (innerHeight + r.height);
     orbits.forEach((orbit, i) => {
       const rotation =

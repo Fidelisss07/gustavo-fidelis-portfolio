@@ -105,7 +105,7 @@ git([
   "user.email=sites@users.noreply.openai.com",
   "commit",
   "-m",
-  "Redesign portfolio with interactive WebGL sculpture and scroll choreography",
+  "Add inline previews, orbital motion and Laís voice integration setup",
 ]);
 const sha = git(["rev-parse", "HEAD"]).stdout.trim();
 git(

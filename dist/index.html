@@ -21,6 +21,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="interactions.css" />
+    <link rel="stylesheet" href="lais.css" />
+    <script type="module" src="lais/lais.js"></script>
     <script src="content.js" defer></script>
     <script src="app.js" defer></script>
     <script src="sculpture.js" defer></script>
@@ -85,9 +88,9 @@
       >
         <p class="section-kicker">PENSADO. DESENVOLVIDO. ENTREGUE.</p>
         <h2 class="statement" id="manifesto-title">
-          Uma boa experiência<br />parece simples.<br /><span
-            >O cuidado está em tudo.</span
-          >
+          <span class="statement-line"><span>Uma boa experiência</span></span>
+          <span class="statement-line"><span>parece simples.</span></span>
+          <span class="statement-line statement-accent"><span>O cuidado está em tudo.</span></span>
         </h2>
         <div class="manifesto-foot">
           <span class="mini-index">01 — ABORDAGEM</span>
@@ -112,158 +115,115 @@
             processo.
           </p>
         </div>
-        <!-- PROJECTS:START -->
-        <article
-          class="feature-project project-debugarena"
-          id="projeto-debugarena"
-        >
-          <div class="project-surface">
-            <img
-              src="assets/debugarena-scene.jpg"
-              alt=""
-              width="1536"
-              height="1024"
-              loading="lazy"
-            /><span class="project-overline">01 / EDTECH / OPEN SOURCE</span>
-            <div class="project-cover-copy">
-              <h3>DebugArena</h3>
-              <p>Aprender a programar.<br />Investigando o que deu errado.</p>
-              <span class="cover-tags"
-                ><span>React</span><span>TypeScript</span
-                ><span>Tailwind</span></span
-              >
-            </div>
-            <button
-              class="surface-open"
-              data-project="debugarena"
-              aria-label="Explorar estudo de caso de DebugArena"
-            >
-              <span class="project-open" aria-hidden="true">↗</span>
-            </button>
-          </div>
-          <div class="project-bottom">
-            <button data-project="debugarena">
-              Explorar estudo de caso <span>↗</span></button
-            ><span>24 investigações · Avaliação no servidor</span
-            ><a
-              href="https://debugarena-omega.vercel.app"
-              target="_blank"
-              rel="noopener"
-              >Abrir projeto ↗</a
-            >
-          </div>
-        </article>
-        <article class="feature-project project-amx" id="projeto-amx">
-          <div class="project-surface">
-            <img
-              src="assets/amxwatch-scene.webp"
-              alt=""
-              width="1536"
-              height="1024"
-              loading="lazy"
-            /><span class="project-overline">02 / E-COMMERCE / PRODUTO</span>
-            <div class="project-cover-copy">
-              <h3>AMXWatch</h3>
-              <p>Uma experiência de compra.<br />Conectada em cada detalhe.</p>
-              <span class="cover-tags"
-                ><span>Next.js</span><span>TypeScript</span
-                ><span>Supabase</span></span
-              >
-            </div>
-            <button
-              class="surface-open"
-              data-project="amx"
-              aria-label="Explorar estudo de caso de AMXWatch"
-            >
-              <span class="project-open" aria-hidden="true">↗</span>
-            </button>
-          </div>
-          <div class="project-bottom">
-            <button data-project="amx">
-              Explorar estudo de caso <span>↗</span></button
-            ><span>Catálogo · Pagamentos · Frete</span
-            ><a href="https://amxwatch.com.br" target="_blank" rel="noopener"
-              >Abrir projeto ↗</a
-            >
-          </div>
-        </article>
-        <div class="other-work">
-          <div class="other-work-heading">
-            <span>OUTRAS EXPLORAÇÕES</span><span>04 PROJETOS</span>
-          </div>
-          <div class="project-list">
-            <article class="project-row" id="projeto-balu">
-              <span class="project-row-index">03</span>
-              <h3><button data-project="balu">BaLu 3D</button></h3>
-              <p>Next.js / TypeScript / Firebase</p>
-              <div class="row-actions">
-                <a href="https://balu3d.com.br" target="_blank" rel="noopener"
-                  >Visitar ↗</a
-                ><button
-                  data-project="balu"
-                  aria-label="Explorar estudo de caso de BaLu 3D"
-                >
-                  +
-                </button>
-              </div>
-            </article>
-            <article class="project-row" id="projeto-acf">
-              <span class="project-row-index">04</span>
-              <h3><button data-project="acf">ACF Performance</button></h3>
-              <p>HTML / CSS / JavaScript</p>
-              <div class="row-actions">
-                <a
-                  href="https://acf-reebranding-sage.vercel.app"
-                  target="_blank"
-                  rel="noopener"
-                  >Visitar ↗</a
-                ><button
-                  data-project="acf"
-                  aria-label="Explorar estudo de caso de ACF Performance"
-                >
-                  +
-                </button>
-              </div>
-            </article>
-            <article class="project-row" id="projeto-milecar">
-              <span class="project-row-index">05</span>
-              <h3><button data-project="milecar">Milé Car Motors</button></h3>
-              <p>HTML / CSS / JavaScript</p>
-              <div class="row-actions">
-                <a
-                  href="https://milecar.vercel.app"
-                  target="_blank"
-                  rel="noopener"
-                  >Visitar ↗</a
-                ><button
-                  data-project="milecar"
-                  aria-label="Explorar estudo de caso de Milé Car Motors"
-                >
-                  +
-                </button>
-              </div>
-            </article>
-            <article class="project-row" id="projeto-tcar">
-              <span class="project-row-index">06</span>
-              <h3><button data-project="tcar">T-CAR Imports</button></h3>
-              <p>React / TypeScript / Vite</p>
-              <div class="row-actions">
-                <a
-                  href="https://tcar-rho.vercel.app"
-                  target="_blank"
-                  rel="noopener"
-                  >Visitar ↗</a
-                ><button
-                  data-project="tcar"
-                  aria-label="Explorar estudo de caso de T-CAR Imports"
-                >
-                  +
-                </button>
-              </div>
-            </article>
-          </div>
+        <!-- PROJECTS:START --><article class="feature-project project-debugarena project-disclosure is-expanded" id="projeto-debugarena">
+    <div class="project-row">
+      <span class="project-row-index">01</span>
+      <h3><button data-toggle-project="debugarena" aria-expanded="true" aria-controls="preview-debugarena">DebugArena</button></h3>
+      <p>React / TypeScript / Tailwind</p>
+      <div class="row-actions"><a href="https://debugarena-omega.vercel.app" target="_blank" rel="noopener">Visitar ↗</a><button class="project-toggle" data-toggle-project="debugarena" data-project-name="DebugArena" aria-expanded="true" aria-controls="preview-debugarena" aria-label="Ocultar prévia de DebugArena"><span aria-hidden="true">−</span></button></div>
+    </div>
+    <div class="project-panel" id="preview-debugarena" role="region" aria-label="Prévia de DebugArena">
+      <div class="project-panel-clip"><div class="project-panel-content">
+        <div class="project-surface">
+          <img src="assets/debugarena-scene.jpg" alt="Imagem de apresentação do projeto DebugArena" width="1536" height="1024" loading="lazy">
+          <span class="project-overline">01 / EDTECH / OPEN SOURCE</span>
+          <div class="project-cover-copy"><h3>DebugArena</h3><p>Aprender a programar.<br>Investigando o que deu errado.</p><span class="cover-tags"><span>React</span><span>TypeScript</span><span>Tailwind</span></span></div>
+          <button class="surface-open" data-project="debugarena" aria-label="Explorar estudo de caso de DebugArena"><span class="project-open" aria-hidden="true">↗</span></button>
         </div>
-        <!-- PROJECTS:END -->
+        <div class="project-bottom"><button data-project="debugarena">Explorar estudo de caso <span>↗</span></button><span>24 investigações · Avaliação no servidor</span><a href="https://debugarena-omega.vercel.app" target="_blank" rel="noopener">Abrir projeto ↗</a></div>
+      </div></div>
+    </div>
+  </article><article class="feature-project project-amx project-disclosure is-expanded" id="projeto-amx">
+    <div class="project-row">
+      <span class="project-row-index">02</span>
+      <h3><button data-toggle-project="amx" aria-expanded="true" aria-controls="preview-amx">AMXWatch</button></h3>
+      <p>Next.js / TypeScript / Supabase</p>
+      <div class="row-actions"><a href="https://amxwatch.com.br" target="_blank" rel="noopener">Visitar ↗</a><button class="project-toggle" data-toggle-project="amx" data-project-name="AMXWatch" aria-expanded="true" aria-controls="preview-amx" aria-label="Ocultar prévia de AMXWatch"><span aria-hidden="true">−</span></button></div>
+    </div>
+    <div class="project-panel" id="preview-amx" role="region" aria-label="Prévia de AMXWatch">
+      <div class="project-panel-clip"><div class="project-panel-content">
+        <div class="project-surface">
+          <img src="assets/amxwatch-scene.webp" alt="Imagem de apresentação do projeto AMXWatch" width="1536" height="1024" loading="lazy">
+          <span class="project-overline">02 / E-COMMERCE / PRODUTO</span>
+          <div class="project-cover-copy"><h3>AMXWatch</h3><p>Uma experiência de compra.<br>Conectada em cada detalhe.</p><span class="cover-tags"><span>Next.js</span><span>TypeScript</span><span>Supabase</span></span></div>
+          <button class="surface-open" data-project="amx" aria-label="Explorar estudo de caso de AMXWatch"><span class="project-open" aria-hidden="true">↗</span></button>
+        </div>
+        <div class="project-bottom"><button data-project="amx">Explorar estudo de caso <span>↗</span></button><span>Catálogo · Pagamentos · Frete</span><a href="https://amxwatch.com.br" target="_blank" rel="noopener">Abrir projeto ↗</a></div>
+      </div></div>
+    </div>
+  </article><div class="other-work"><div class="other-work-heading"><span>OUTRAS EXPLORAÇÕES</span><span>04 PROJETOS</span></div><div class="project-list"><article class="feature-project project-balu project-disclosure" id="projeto-balu">
+    <div class="project-row">
+      <span class="project-row-index">03</span>
+      <h3><button data-toggle-project="balu" aria-expanded="false" aria-controls="preview-balu">BaLu 3D</button></h3>
+      <p>Next.js / TypeScript / Firebase</p>
+      <div class="row-actions"><a href="https://balu3d.com.br" target="_blank" rel="noopener">Visitar ↗</a><button class="project-toggle" data-toggle-project="balu" data-project-name="BaLu 3D" aria-expanded="false" aria-controls="preview-balu" aria-label="Expandir prévia de BaLu 3D"><span aria-hidden="true">+</span></button></div>
+    </div>
+    <div class="project-panel" id="preview-balu" role="region" aria-label="Prévia de BaLu 3D">
+      <div class="project-panel-clip"><div class="project-panel-content">
+        <div class="project-surface brand-surface">
+          <img src="assets/balu3d-logo.webp" alt="Marca do projeto BaLu 3D" width="1536" height="1024" loading="lazy">
+          <span class="project-overline">03 / E-COMMERCE / IMPRESSÃO 3D</span>
+          <div class="project-cover-copy"><h3>BaLu 3D</h3><p>Da ideia ao objeto.<br>Da vitrine ao checkout.</p><span class="cover-tags"><span>Next.js</span><span>TypeScript</span><span>Firebase</span></span></div>
+          <button class="surface-open" data-project="balu" aria-label="Explorar estudo de caso de BaLu 3D"><span class="project-open" aria-hidden="true">↗</span></button>
+        </div>
+        <div class="project-bottom"><button data-project="balu">Explorar estudo de caso <span>↗</span></button><span>Catálogo · Checkout · Administração</span><a href="https://balu3d.com.br" target="_blank" rel="noopener">Abrir projeto ↗</a></div>
+      </div></div>
+    </div>
+  </article><article class="feature-project project-acf project-disclosure" id="projeto-acf">
+    <div class="project-row">
+      <span class="project-row-index">04</span>
+      <h3><button data-toggle-project="acf" aria-expanded="false" aria-controls="preview-acf">ACF Performance</button></h3>
+      <p>HTML / CSS / JavaScript</p>
+      <div class="row-actions"><a href="https://acf-reebranding-sage.vercel.app" target="_blank" rel="noopener">Visitar ↗</a><button class="project-toggle" data-toggle-project="acf" data-project-name="ACF Performance" aria-expanded="false" aria-controls="preview-acf" aria-label="Expandir prévia de ACF Performance"><span aria-hidden="true">+</span></button></div>
+    </div>
+    <div class="project-panel" id="preview-acf" role="region" aria-label="Prévia de ACF Performance">
+      <div class="project-panel-clip"><div class="project-panel-content">
+        <div class="project-surface">
+          <img src="assets/acf-scene.webp" alt="Imagem de apresentação do projeto ACF Performance" width="1536" height="1024" loading="lazy">
+          <span class="project-overline">04 / AUTOMOTIVO / PERFORMANCE</span>
+          <div class="project-cover-copy"><h3>ACF Performance</h3><p>Performance na pista.<br>Precisão na interface.</p><span class="cover-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></span></div>
+          <button class="surface-open" data-project="acf" aria-label="Explorar estudo de caso de ACF Performance"><span class="project-open" aria-hidden="true">↗</span></button>
+        </div>
+        <div class="project-bottom"><button data-project="acf">Explorar estudo de caso <span>↗</span></button><span>11 páginas · Catálogo · Orçamento</span><a href="https://acf-reebranding-sage.vercel.app" target="_blank" rel="noopener">Abrir projeto ↗</a></div>
+      </div></div>
+    </div>
+  </article><article class="feature-project project-milecar project-disclosure" id="projeto-milecar">
+    <div class="project-row">
+      <span class="project-row-index">05</span>
+      <h3><button data-toggle-project="milecar" aria-expanded="false" aria-controls="preview-milecar">Milé Car Motors</button></h3>
+      <p>HTML / CSS / JavaScript</p>
+      <div class="row-actions"><a href="https://milecar.vercel.app" target="_blank" rel="noopener">Visitar ↗</a><button class="project-toggle" data-toggle-project="milecar" data-project-name="Milé Car Motors" aria-expanded="false" aria-controls="preview-milecar" aria-label="Expandir prévia de Milé Car Motors"><span aria-hidden="true">+</span></button></div>
+    </div>
+    <div class="project-panel" id="preview-milecar" role="region" aria-label="Prévia de Milé Car Motors">
+      <div class="project-panel-clip"><div class="project-panel-content">
+        <div class="project-surface">
+          <img src="assets/milecar-scene.webp" alt="Imagem de apresentação do projeto Milé Car Motors" width="1536" height="1024" loading="lazy">
+          <span class="project-overline">05 / AUTOMOTIVO / EXPERIÊNCIA DIGITAL</span>
+          <div class="project-cover-copy"><h3>Milé Car Motors</h3><p>Uma nova perspectiva.<br>Para encontrar o próximo carro.</p><span class="cover-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></span></div>
+          <button class="surface-open" data-project="milecar" aria-label="Explorar estudo de caso de Milé Car Motors"><span class="project-open" aria-hidden="true">↗</span></button>
+        </div>
+        <div class="project-bottom"><button data-project="milecar">Explorar estudo de caso <span>↗</span></button><span>Identidade · Catálogo · Experiência</span><a href="https://milecar.vercel.app" target="_blank" rel="noopener">Abrir projeto ↗</a></div>
+      </div></div>
+    </div>
+  </article><article class="feature-project project-tcar project-disclosure" id="projeto-tcar">
+    <div class="project-row">
+      <span class="project-row-index">06</span>
+      <h3><button data-toggle-project="tcar" aria-expanded="false" aria-controls="preview-tcar">T-CAR Imports</button></h3>
+      <p>React / TypeScript / Vite</p>
+      <div class="row-actions"><a href="https://tcar-rho.vercel.app" target="_blank" rel="noopener">Visitar ↗</a><button class="project-toggle" data-toggle-project="tcar" data-project-name="T-CAR Imports" aria-expanded="false" aria-controls="preview-tcar" aria-label="Expandir prévia de T-CAR Imports"><span aria-hidden="true">+</span></button></div>
+    </div>
+    <div class="project-panel" id="preview-tcar" role="region" aria-label="Prévia de T-CAR Imports">
+      <div class="project-panel-clip"><div class="project-panel-content">
+        <div class="project-surface brand-surface">
+          <img src="assets/tcar-logo.webp" alt="Marca do projeto T-CAR Imports" width="1536" height="1024" loading="lazy">
+          <span class="project-overline">06 / AUTOMOTIVO / CATÁLOGO</span>
+          <div class="project-cover-copy"><h3>T-CAR Imports</h3><p>O próximo destino.<br>Começa com uma boa escolha.</p><span class="cover-tags"><span>React</span><span>TypeScript</span><span>Vite</span></span></div>
+          <button class="surface-open" data-project="tcar" aria-label="Explorar estudo de caso de T-CAR Imports"><span class="project-open" aria-hidden="true">↗</span></button>
+        </div>
+        <div class="project-bottom"><button data-project="tcar">Explorar estudo de caso <span>↗</span></button><span>Busca · Filtros · Integrações</span><a href="https://tcar-rho.vercel.app" target="_blank" rel="noopener">Abrir projeto ↗</a></div>
+      </div></div>
+    </div>
+  </article></div></div><!-- PROJECTS:END -->
       </section>
       <section
         class="engineering"
@@ -282,8 +242,9 @@
             </p>
           </div>
           <div class="system-visual" aria-hidden="true">
-            <div class="system-orbit orbit-one"></div>
-            <div class="system-orbit orbit-two"></div>
+            <div class="system-aura"></div>
+            <div class="system-orbit orbit-one"><i class="orbital-spark"></i><i class="orbital-spark spark-echo"></i></div>
+            <div class="system-orbit orbit-two"><i class="orbital-spark"></i><i class="orbital-spark spark-echo"></i></div>
             <span class="system-node node-a">INTERFACE</span
             ><span class="system-node node-b">LÓGICA</span
             ><span class="system-node node-c">DADOS</span>
@@ -482,84 +443,7 @@
           <span>09 CERTIFICADOS</span>
         </div>
         <div class="certificates">
-          <!-- CERTIFICATES:START --><a
-            class="certificate"
-            href="assets/cert-fiap-sustentabilidade.webp"
-            data-certificate="0"
-            aria-label="Abrir certificado: Formação Social e Sustentabilidade"
-            ><span
-              ><strong>Formação Social e Sustentabilidade</strong
-              ><small>FIAP · 80 HORAS · 2026</small></span
-            ><span class="cert-arrow" aria-hidden="true">↗</span></a
-          ><a
-            class="certificate"
-            href="assets/cert-react.webp"
-            data-certificate="1"
-            aria-label="Abrir certificado: React"
-            ><span><strong>React</strong><small>DEV CLUB · 2026</small></span
-            ><span class="cert-arrow" aria-hidden="true">↗</span></a
-          ><a
-            class="certificate"
-            href="assets/cert-node.webp"
-            data-certificate="2"
-            aria-label="Abrir certificado: Node.js"
-            ><span><strong>Node.js</strong><small>DEV CLUB · 2026</small></span
-            ><span class="cert-arrow" aria-hidden="true">↗</span></a
-          ><a
-            class="certificate"
-            href="assets/cert-typescript.webp"
-            data-certificate="3"
-            aria-label="Abrir certificado: TypeScript — Back-end"
-            ><span
-              ><strong>TypeScript — Back-end</strong
-              ><small>DEV CLUB · 2026</small></span
-            ><span class="cert-arrow" aria-hidden="true">↗</span></a
-          ><a
-            class="certificate"
-            href="assets/cert-js-async.webp"
-            data-certificate="4"
-            aria-label="Abrir certificado: JavaScript pt. VI — Async/Await"
-            ><span
-              ><strong>JavaScript pt. VI — Async/Await</strong
-              ><small>DEV CLUB · 2026</small></span
-            ><span class="cert-arrow" aria-hidden="true">↗</span></a
-          ><a
-            class="certificate"
-            href="assets/cert-css-grid.webp"
-            data-certificate="5"
-            aria-label="Abrir certificado: CSS — Display Grid"
-            ><span
-              ><strong>CSS — Display Grid</strong
-              ><small>DEV CLUB · 2026</small></span
-            ><span class="cert-arrow" aria-hidden="true">↗</span></a
-          ><a
-            class="certificate"
-            href="assets/cert-javascript.webp"
-            data-certificate="6"
-            aria-label="Abrir certificado: JavaScript pt. V — A Nova Ordem de Dados"
-            ><span
-              ><strong>JavaScript pt. V — A Nova Ordem de Dados</strong
-              ><small>DEV CLUB · 2026</small></span
-            ><span class="cert-arrow" aria-hidden="true">↗</span></a
-          ><a
-            class="certificate"
-            href="assets/cert-css.webp"
-            data-certificate="7"
-            aria-label="Abrir certificado: CSS Intermediário"
-            ><span
-              ><strong>CSS Intermediário</strong
-              ><small>DEV CLUB · 2025</small></span
-            ><span class="cert-arrow" aria-hidden="true">↗</span></a
-          ><a
-            class="certificate"
-            href="assets/cert-git.webp"
-            data-certificate="8"
-            aria-label="Abrir certificado: Git &amp; GitHub"
-            ><span
-              ><strong>Git &amp; GitHub</strong
-              ><small>DEV CLUB · 2025</small></span
-            ><span class="cert-arrow" aria-hidden="true">↗</span></a
-          ><!-- CERTIFICATES:END -->
+          <!-- CERTIFICATES:START --><a class="certificate" href="assets/cert-fiap-sustentabilidade.webp" data-certificate="0" aria-label="Abrir certificado: Formação Social e Sustentabilidade"><span><strong>Formação Social e Sustentabilidade</strong><small>FIAP · 80 HORAS · 2026</small></span><span class="cert-arrow" aria-hidden="true">↗</span></a><a class="certificate" href="assets/cert-react.webp" data-certificate="1" aria-label="Abrir certificado: React"><span><strong>React</strong><small>DEV CLUB · 2026</small></span><span class="cert-arrow" aria-hidden="true">↗</span></a><a class="certificate" href="assets/cert-node.webp" data-certificate="2" aria-label="Abrir certificado: Node.js"><span><strong>Node.js</strong><small>DEV CLUB · 2026</small></span><span class="cert-arrow" aria-hidden="true">↗</span></a><a class="certificate" href="assets/cert-typescript.webp" data-certificate="3" aria-label="Abrir certificado: TypeScript — Back-end"><span><strong>TypeScript — Back-end</strong><small>DEV CLUB · 2026</small></span><span class="cert-arrow" aria-hidden="true">↗</span></a><a class="certificate" href="assets/cert-js-async.webp" data-certificate="4" aria-label="Abrir certificado: JavaScript pt. VI — Async/Await"><span><strong>JavaScript pt. VI — Async/Await</strong><small>DEV CLUB · 2026</small></span><span class="cert-arrow" aria-hidden="true">↗</span></a><a class="certificate" href="assets/cert-css-grid.webp" data-certificate="5" aria-label="Abrir certificado: CSS — Display Grid"><span><strong>CSS — Display Grid</strong><small>DEV CLUB · 2026</small></span><span class="cert-arrow" aria-hidden="true">↗</span></a><a class="certificate" href="assets/cert-javascript.webp" data-certificate="6" aria-label="Abrir certificado: JavaScript pt. V — A Nova Ordem de Dados"><span><strong>JavaScript pt. V — A Nova Ordem de Dados</strong><small>DEV CLUB · 2026</small></span><span class="cert-arrow" aria-hidden="true">↗</span></a><a class="certificate" href="assets/cert-css.webp" data-certificate="7" aria-label="Abrir certificado: CSS Intermediário"><span><strong>CSS Intermediário</strong><small>DEV CLUB · 2025</small></span><span class="cert-arrow" aria-hidden="true">↗</span></a><a class="certificate" href="assets/cert-git.webp" data-certificate="8" aria-label="Abrir certificado: Git &amp; GitHub"><span><strong>Git &amp; GitHub</strong><small>DEV CLUB · 2025</small></span><span class="cert-arrow" aria-hidden="true">↗</span></a><!-- CERTIFICATES:END -->
         </div>
       </section>
       <section class="contact" id="contato" aria-labelledby="contact-title">
@@ -640,6 +524,24 @@
         </div>
       </section>
     </main>
+    <button class="lais-launcher" id="lais-launcher" aria-haspopup="dialog" aria-controls="lais-dialog" aria-expanded="false">
+      <span class="lais-mini-orb" aria-hidden="true"></span><span>Converse com a Laís<small>Assistente virtual · IA</small></span>
+    </button>
+    <dialog id="lais-dialog" aria-labelledby="lais-title" data-state="idle">
+      <header class="lais-top"><div><h2 id="lais-title">Laís.</h2><small>Um outro jeito de conhecer o Gustavo.</small></div><button class="lais-close" aria-label="Fechar conversa com a Laís">×</button></header>
+      <div class="lais-stage"><div class="lais-orb" aria-hidden="true"></div><p id="lais-status" role="status">Em configuração</p><p id="lais-mode-help">Pode falar naturalmente e interromper quando precisar.</p></div>
+      <div class="lais-body">
+        <div class="lais-modes" role="group" aria-label="Modo de conversa"><button data-lais-mode="voice" aria-pressed="true">Conversa ao vivo</button><button data-lais-mode="text" aria-pressed="false">Por texto</button></div>
+        <label class="lais-consent"><input id="lais-consent" type="checkbox">Entendo que conversarei com uma IA e que minhas mensagens e, no modo de voz, meu áudio serão processados pela ElevenLabs e pelo provedor do modelo.</label>
+        <p class="lais-privacy">Não envie dados sensíveis. O microfone só é ativado ao iniciar a conversa por voz. <a href="https://elevenlabs.io/privacy-policy" target="_blank" rel="noopener">Privacidade ElevenLabs ↗</a></p>
+        <div class="lais-controls"><button id="lais-start" class="lais-primary" disabled>Iniciar conversa ao vivo</button><button id="lais-mute" class="lais-mute" aria-pressed="false" hidden>Pausar microfone</button><button id="lais-stop" class="lais-stop" hidden>Encerrar</button></div>
+        <div class="lais-questions"><button data-lais-question="Quais projetos mostram melhor as habilidades do Gustavo?">Projetos em destaque</button><button data-lais-question="Qual é a formação e a experiência profissional do Gustavo?">Formação e experiência</button><button data-lais-question="Como entro em contato com o Gustavo?">Vamos conversar?</button></div>
+        <p id="lais-notice" role="status"></p>
+        <div id="lais-transcript" class="lais-transcript" role="log" aria-label="Transcrição da conversa" aria-live="polite" aria-relevant="additions text"></div>
+        <form id="lais-form" class="lais-form"><label class="sr-only" for="lais-input">Sua mensagem para a Laís</label><input id="lais-input" placeholder="Pergunte sobre o Gustavo…" maxlength="1000" autocomplete="off" disabled><button type="submit" aria-label="Enviar mensagem para a Laís" disabled>↑</button></form>
+        <div class="lais-source-links"><a href="assets/curriculo_gustavo_fidelis_final.pdf" target="_blank" rel="noopener">Currículo ↗</a><a href="https://github.com/Fidelisss07" target="_blank" rel="noopener">GitHub ↗</a><a href="mailto:gufidelis116@gmail.com">Falar com Gustavo ↗</a></div>
+      </div>
+    </dialog>
     <dialog id="detail-dialog" aria-labelledby="dialog-title">
       <button class="dialog-close" type="button" aria-label="Fechar detalhes">
         ✕

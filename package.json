@@ -5,7 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "node server.mjs",
-    "build": "node render-content.mjs",
+    "build": "node render-content.mjs && node scripts/build-lais.mjs",
+    "lais:knowledge": "node scripts/sync-knowledge.mjs",
+    "lais:configure": "node scripts/configure-lais.mjs",
+    "test": "node --test tests/*.test.mjs",
     "check": "node --check dist/app.js && node --check dist/sculpture.js && node --check dist/content.js && node verify.mjs"
+  },
+  "dependencies": {
+    "@elevenlabs/client": "1.25.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
   }
 }

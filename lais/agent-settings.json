@@ -1,0 +1,102 @@
+{
+  "name": "Laís — Portfólio Gustavo Fidelis",
+  "conversation_config": {
+    "agent": {
+      "first_message": "Oi! Eu sou a Laís, assistente virtual de IA do Gustavo. Posso te ajudar a conhecer os projetos, a experiência e a formação dele. O que você gostaria de saber?",
+      "language": "pt",
+      "disable_first_message_interruptions": false,
+      "max_conversation_duration_message": "Vou encerrar por aqui para respeitar o limite desta conversa. Você pode continuar pelo contato do portfólio. Obrigada!",
+      "prompt": {
+        "llm": "gemini-2.5-flash",
+        "temperature": 0.25,
+        "max_tokens": 450,
+        "thinking_budget": 0,
+        "backup_llm_config": {
+          "preference": "disabled"
+        },
+        "tool_ids": [],
+        "mcp_server_ids": [],
+        "knowledge_base": [],
+        "rag": {
+          "enabled": false
+        }
+      }
+    },
+    "tts": {
+      "model_id": "eleven_flash_v2_5",
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 1
+    },
+    "turn": {
+      "turn_eagerness": "normal",
+      "turn_timeout": 10,
+      "silence_end_call_timeout": 30,
+      "speculative_turn": false
+    },
+    "conversation": {
+      "max_duration_seconds": 180,
+      "client_events": [
+        "audio",
+        "interruption",
+        "user_transcript",
+        "agent_response",
+        "agent_response_correction"
+      ]
+    }
+  },
+  "platform_settings": {
+    "auth": {
+      "enable_auth": false,
+      "require_origin_header": true,
+      "allowlist": [
+        {
+          "hostname": "gustavo-fidelis-portfolio-astra.fidelis07dev.chatgpt.site"
+        },
+        {
+          "hostname": "127.0.0.1:4173"
+        },
+        {
+          "hostname": "localhost:4173"
+        }
+      ]
+    },
+    "call_limits": {
+      "agent_concurrency_limit": 1,
+      "daily_limit": 5,
+      "bursting_enabled": false
+    },
+    "privacy": {
+      "record_voice": false,
+      "retention_days": 0,
+      "delete_transcript_and_pii": true,
+      "delete_audio": true,
+      "apply_to_existing_conversations": false
+    },
+    "analysis_llm": "gemini-2.5-flash",
+    "data_collection": {},
+    "evaluation": {
+      "criteria": []
+    },
+    "overrides": {
+      "conversation_config_override": {
+        "conversation": {
+          "text_only": true,
+          "max_duration_seconds": false
+        },
+        "agent": {
+          "prompt": {
+            "prompt": false,
+            "llm": false,
+            "knowledge_base": false
+          },
+          "first_message": false,
+          "language": false
+        },
+        "tts": {
+          "voice_id": false
+        }
+      }
+    }
+  }
+}
