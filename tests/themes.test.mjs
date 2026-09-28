@@ -37,3 +37,17 @@ test("theme choice is persisted and announces the matching palette", () => {
   assert.match(app, /aria-pressed/);
   assert.match(app, /themePicker\.open = false/);
 });
+
+test("Laís accents follow the active palette instead of staying blue", () => {
+  for (const theme of themes.slice(1))
+    assert.match(css, new RegExp(`body\\[data-theme="${theme}"\\][\\s\\S]*?--lais-hue:`));
+  assert.match(css, /\.lais-primary:not\(:disabled\)[\s\S]*?background: var\(--blue\)/);
+  assert.match(css, /\.lais-message\.from-user[\s\S]*?color-mix\(in srgb, var\(--blue\)/);
+});
+
+test("the hero sculpture uses clearly visible continuous movement", () => {
+  assert.match(sculpture, /elapsed \* 0\.22 \+ currentX/);
+  assert.match(sculpture, /Math\.sin\(elapsed \* 0\.34\)/);
+  assert.match(sculpture, /Math\.sin\(elapsed \* 0\.46\)/);
+  assert.match(sculpture, /prefers-reduced-motion: reduce/);
+});

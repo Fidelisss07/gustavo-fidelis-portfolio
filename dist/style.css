@@ -17,6 +17,7 @@
   --focus-accent: #7797ff;
   --blue-halo: #2554ff25;
   --hero-wash: #14235a45;
+  --lais-hue: 0deg;
   --mono: "IBM Plex Mono", monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   font-synthesis: none;
@@ -38,36 +39,43 @@ body[data-theme="purple"] {
   --blue: #8765f5; --blue-bright: #b7a2ff; --blue-light: #d2c7ff;
   --blue-deep: #6842d8; --blue-end: #9d82ff; --focus-accent: #bca8ff;
   --blue-halo: #8765f533; --hero-wash: #301c5a66;
+  --lais-hue: 37deg;
 }
 body[data-theme="red"] {
   --blue: #ef5b53; --blue-bright: #ff817a; --blue-light: #ffb1a9;
   --blue-deep: #c62d34; --blue-end: #ff9585; --focus-accent: #ff867e;
   --blue-halo: #f05a5240; --hero-wash: #51191e66;
+  --lais-hue: 137deg;
 }
 body[data-theme="pink"] {
   --blue: #e76caf; --blue-bright: #f28fc4; --blue-light: #ffc0e2;
   --blue-deep: #d64d93; --blue-end: #fb9ac9; --focus-accent: #ffb1d6;
   --blue-halo: #e76caf40; --hero-wash: #4a173866;
+  --lais-hue: 107deg;
 }
 body[data-theme="orange"] {
   --blue: #e8883d; --blue-bright: #f3a35e; --blue-light: #ffcf9c;
   --blue-deep: #d2692a; --blue-end: #fdb270; --focus-accent: #f6ad6f;
   --blue-halo: #e8883d40; --hero-wash: #4a281566;
+  --lais-hue: 162deg;
 }
 body[data-theme="cyan"] {
   --blue: #18b9b4; --blue-bright: #4ed8d2; --blue-light: #9aece5;
   --blue-deep: #098f9a; --blue-end: #69dcd5; --focus-accent: #76ddd9;
   --blue-halo: #21c9c240; --hero-wash: #123c4666;
+  --lais-hue: 317deg;
 }
 body[data-theme="yellow"] {
   --blue: #bd951c; --blue-bright: #d6b43c; --blue-light: #f3d977;
   --blue-deep: #ad7e12; --blue-end: #f6d365; --focus-accent: #e7cc69;
   --blue-halo: #efcb4b35; --hero-wash: #3c321766;
+  --lais-hue: 187deg;
 }
 body[data-theme="green"] {
   --blue: #32895d; --blue-bright: #64b684; --blue-light: #a7dfb8;
   --blue-deep: #22734b; --blue-end: #85d09c; --focus-accent: #7dc99a;
   --blue-halo: #60ba7a35; --hero-wash: #153c2e66;
+  --lais-hue: 282deg;
 }
 h1,
 h2,
@@ -2166,6 +2174,35 @@ dialog::backdrop {
 }
 .surface-open:hover {
   background: #ffffff04;
+}
+/* Keep the Laís assistant accents in sync with the selected portfolio palette. */
+body[data-theme] .lais-mini-orb canvas,
+body[data-theme] .lais-orb canvas {
+  filter: hue-rotate(var(--lais-hue)) saturate(1.16);
+}
+body[data-theme] .lais-primary:not(:disabled),
+body[data-theme] .lais-form button:not(:disabled) {
+  background: var(--blue);
+  box-shadow: 0 8px 24px var(--blue-halo);
+}
+body[data-theme] .lais-consent input {
+  accent-color: var(--blue-bright);
+}
+body[data-theme] .lais-message strong {
+  color: var(--blue-bright);
+}
+body[data-theme] .lais-message.from-user {
+  background: color-mix(in srgb, var(--blue) 24%, #1d2c4b);
+}
+body[data-theme] .lais-form input:focus-visible,
+body[data-theme] .lais-questions button:focus-visible {
+  border-color: var(--focus-accent);
+  outline: 2px solid var(--focus-accent);
+  outline-offset: 2px;
+}
+body[data-theme] .lais-questions button:hover {
+  border-color: var(--blue-bright);
+  background: color-mix(in srgb, var(--blue) 16%, transparent);
 }
 @media (max-width: 700px) {
   .sculpture-stage {

@@ -404,10 +404,10 @@
     currentY += (pointerY - currentY) * 0.045;
     const model = multiply(
       multiply(
-        rz(-0.5 + scroll * 0.35),
-        ry(0.35 + (moving ? elapsed * 0.075 + currentX * 0.3 : 0)),
+        rz(-0.5 + scroll * 0.35 + (moving ? Math.sin(elapsed * 0.34) * 0.06 : 0)),
+        ry(0.35 + (moving ? elapsed * 0.22 + currentX * 0.3 : 0)),
       ),
-      rx(0.55 + (moving ? currentY * 0.22 + scroll * 0.6 : 0)),
+      rx(0.55 + (moving ? currentY * 0.22 + scroll * 0.6 + Math.sin(elapsed * 0.46) * 0.09 : 0)),
     );
     gl.uniformMatrix4fv(modelLocation, false, model);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
