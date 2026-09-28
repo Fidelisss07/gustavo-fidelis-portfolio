@@ -32,6 +32,8 @@ As informações foram extraídas do repositório público `Fidelisss07/Portifol
 
 Os seis projetos têm prévias independentes com controles +/−, estado anunciado e conteúdo recolhido fora da navegação por teclado. Os dois destaques começam abertos. Visitar o site e ler o estudo de caso são ações separadas. Sem JavaScript, todas as prévias permanecem disponíveis.
 
+O seletor “Tema” no cabeçalho oferece oito paletas. Azul mantém a escultura original; cada outra cor usa uma forma procedural própria, com transição de malha e preferência salva no navegador.
+
 A frase da abordagem é revelada linha por linha pela rolagem. O sistema orbital possui partículas em trajetórias elípticas, reflexo no núcleo e resposta ao ponteiro; para fora da tela, em aba oculta ou com movimento reduzido/pausado. Os estilos destas interações ficam em `dist/interactions.css`.
 
 Modais nativos com fechamento por Escape, contenção de foco e devolução de foco ao acionador. Navegação por âncoras, link para pular conteúdo, controles com rótulos e respeito a `prefers-reduced-motion`. Imagens têm dimensões reservadas e carregamento adiado quando fora da abertura.

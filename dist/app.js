@@ -10,6 +10,48 @@ function updateTime() {
 updateTime();
 setInterval(updateTime, 60000);
 
+const themeOptions = [
+  ["blue", "Azul", "escultura original"],
+  ["purple", "Violeta", "prisma"],
+  ["red", "Vermelho", "fita torcida"],
+  ["pink", "Rosa", "flor de luz"],
+  ["orange", "Laranja", "anel ondulado"],
+  ["cyan", "Ciano", "toróide ripado"],
+  ["yellow", "Amarelo", "astro facetado"],
+  ["green", "Verde", "forma foliar"],
+];
+const themePicker = document.querySelector("#theme-picker");
+const themeButtons = [...document.querySelectorAll("[data-theme-select]")];
+const themeName = document.querySelector("#theme-current-name");
+const themeStatus = document.querySelector("#theme-status");
+const themesById = new Map(themeOptions.map(([id, name, shape]) => [id, { id, name, shape }]));
+function applyTheme(id, persist = true) {
+  const theme = themesById.get(id) || themesById.get("blue");
+  document.body.dataset.theme = theme.id;
+  themeName.textContent = theme.name;
+  themeStatus.textContent = `${theme.name} · ${theme.shape}`;
+  themeButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.themeSelect === theme.id));
+  });
+  if (persist) {
+    try { localStorage.setItem("gustavo-portfolio-theme", theme.id); } catch {}
+  }
+  document.dispatchEvent(new CustomEvent("portfolio:themechange", { detail: { id: theme.id } }));
+}
+let savedTheme = "blue";
+try { savedTheme = localStorage.getItem("gustavo-portfolio-theme") || "blue"; } catch {}
+applyTheme(savedTheme, false);
+themeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    applyTheme(button.dataset.themeSelect);
+    themePicker.open = false;
+    themePicker.querySelector("summary").focus();
+  });
+});
+document.addEventListener("click", (event) => {
+  if (themePicker.open && !themePicker.contains(event.target)) themePicker.open = false;
+});
+
 const { projects, certificates } = window.portfolioContent;
 const escapeHTML = (value) =>
   String(value).replace(

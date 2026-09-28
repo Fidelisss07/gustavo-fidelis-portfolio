@@ -25,10 +25,10 @@
     <link rel="stylesheet" href="lais.css" />
     <script type="module" src="lais/lais.js"></script>
     <script src="content.js" defer></script>
-    <script src="app.js" defer></script>
     <script src="sculpture.js" defer></script>
+    <script src="app.js" defer></script>
   </head>
-  <body>
+  <body data-theme="blue">
     <a class="skip-link" href="#main">Pular para o conteúdo</a>
     <header class="navigation">
       <a class="signature" href="#inicio" aria-label="Gustavo Fidelis, início"
@@ -38,6 +38,27 @@
         <a href="#projetos">Trabalho</a><a href="#sobre">Sobre</a
         ><a href="#trajetoria">Trajetória</a>
       </nav>
+      <details class="theme-picker" id="theme-picker">
+        <summary aria-label="Escolher cor do tema">
+          <span class="theme-trigger-swatch" aria-hidden="true"></span>
+          <span class="theme-trigger-copy">Tema <span id="theme-current-name">Azul</span></span>
+          <span class="theme-trigger-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="theme-menu">
+          <p class="theme-menu-kicker">UMA COR, OUTRA FORMA</p>
+          <div class="theme-options" role="group" aria-label="Paletas de cor">
+            <button class="theme-option" type="button" data-theme-select="blue" aria-pressed="true" aria-label="Azul — escultura original"><span class="theme-swatch swatch-blue" aria-hidden="true"></span><span>Azul</span></button>
+            <button class="theme-option" type="button" data-theme-select="purple" aria-pressed="false" aria-label="Violeta — prisma"><span class="theme-swatch swatch-purple" aria-hidden="true"></span><span>Violeta</span></button>
+            <button class="theme-option" type="button" data-theme-select="red" aria-pressed="false" aria-label="Vermelho — fita torcida"><span class="theme-swatch swatch-red" aria-hidden="true"></span><span>Vermelho</span></button>
+            <button class="theme-option" type="button" data-theme-select="pink" aria-pressed="false" aria-label="Rosa — flor de luz"><span class="theme-swatch swatch-pink" aria-hidden="true"></span><span>Rosa</span></button>
+            <button class="theme-option" type="button" data-theme-select="orange" aria-pressed="false" aria-label="Laranja — anel ondulado"><span class="theme-swatch swatch-orange" aria-hidden="true"></span><span>Laranja</span></button>
+            <button class="theme-option" type="button" data-theme-select="cyan" aria-pressed="false" aria-label="Ciano — toróide ripado"><span class="theme-swatch swatch-cyan" aria-hidden="true"></span><span>Ciano</span></button>
+            <button class="theme-option" type="button" data-theme-select="yellow" aria-pressed="false" aria-label="Amarelo — astro facetado"><span class="theme-swatch swatch-yellow" aria-hidden="true"></span><span>Amarelo</span></button>
+            <button class="theme-option" type="button" data-theme-select="green" aria-pressed="false" aria-label="Verde — forma foliar"><span class="theme-swatch swatch-green" aria-hidden="true"></span><span>Verde</span></button>
+          </div>
+          <p class="theme-menu-status" id="theme-status" role="status" aria-live="polite">Azul · escultura original</p>
+        </div>
+      </details>
       <a class="nav-contact" href="#contato">Vamos conversar <span>↗</span></a>
     </header>
     <main id="main">
