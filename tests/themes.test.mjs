@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 
 const html = readFileSync("dist/index.html", "utf8");
 const css = readFileSync("dist/style.css", "utf8");
+const interactions = readFileSync("dist/interactions.css", "utf8");
 const app = readFileSync("dist/app.js", "utf8");
 const sculpture = readFileSync("dist/sculpture.js", "utf8");
 const themes = ["blue", "purple", "red", "pink", "orange", "cyan", "yellow", "green"];
@@ -43,6 +44,17 @@ test("Laís accents follow the active palette instead of staying blue", () => {
     assert.match(css, new RegExp(`body\\[data-theme="${theme}"\\][\\s\\S]*?--lais-hue:`));
   assert.match(css, /\.lais-primary:not\(:disabled\)[\s\S]*?background: var\(--blue\)/);
   assert.match(css, /\.lais-message\.from-user[\s\S]*?color-mix\(in srgb, var\(--blue\)/);
+  assert.match(css, /body\[data-theme\] \.lais-mini-orb,[\s\S]*?filter: hue-rotate\(var\(--lais-hue\)\)/);
+});
+
+test("contact and interactive accents use the selected palette", () => {
+  assert.match(css, /\.contact \{[\s\S]*?background: var\(--blue\)/);
+  assert.match(css, /\.button-primary:hover \{\s*background: var\(--blue-bright\)/);
+  assert.doesNotMatch(css, /\.contact \{[^}]*background:\s*#[\da-f]{3,8}/i);
+  assert.match(interactions, /\.project-toggle:hover \{[\s\S]*?color: var\(--blue-deep\)/);
+  assert.match(interactions, /\.system-aura[\s\S]*?var\(--blue\)/);
+  assert.match(interactions, /\.orbital-spark[\s\S]*?var\(--blue-light\)/);
+  assert.doesNotMatch(interactions, /#(?:dfe6ff|164bea|2359e329|477aff|cfdeff)/i);
 });
 
 test("the hero sculpture uses clearly visible continuous movement", () => {

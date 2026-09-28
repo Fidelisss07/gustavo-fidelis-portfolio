@@ -680,7 +680,7 @@ h1 {
 }
 .feature-project:hover .project-open {
   transform: rotate(45deg);
-  background: #dfe6ff;
+  background: color-mix(in srgb, var(--blue) 14%, white);
 }
 .project-bottom {
   display: flex;
@@ -877,8 +877,8 @@ h1 {
   border-radius: 50%;
   top: 50%;
   left: -3px;
-  background: #81aaff;
-  box-shadow: 0 0 16px #4b73ff;
+  background: var(--blue-light);
+  box-shadow: 0 0 16px var(--blue);
 }
 .system-node {
   position: absolute;
@@ -888,7 +888,7 @@ h1 {
   border-radius: 20px;
   font-family: var(--mono);
   font-size: 11px;
-  color: #a4b9ec;
+  color: var(--blue-light);
   z-index: 2;
 }
 .node-a {
@@ -1070,7 +1070,7 @@ input[type="radio"] {
   gap: 35px;
 }
 .button-primary:hover {
-  background: #476cff;
+  background: var(--blue-bright);
 }
 .button-primary:disabled {
   opacity: 0.6;
@@ -1082,7 +1082,7 @@ input[type="radio"] {
 #form-status {
   font-size: 13px;
   margin-top: 12px;
-  color: #c1d1ff;
+  color: var(--blue-light);
 }
 #checkout-status:empty,
 #form-status:empty {
@@ -1263,7 +1263,7 @@ input[type="radio"] {
   color: #929cac;
 }
 .contact {
-  background: #1d48f2;
+  background: var(--blue);
   color: white;
   padding-top: 90px;
   overflow: hidden;
@@ -1273,7 +1273,7 @@ input[type="radio"] {
   justify-content: space-between;
   gap: 20px;
   align-items: center;
-  color: #bfcfff;
+  color: var(--blue-light);
 }
 .contact-top .section-kicker {
   font-size: 10px;
@@ -1328,7 +1328,7 @@ input[type="radio"] {
   justify-content: space-between;
   cursor: pointer;
   font-size: 13px;
-  color: #d1dcff;
+  color: var(--blue-light);
   list-style: none;
 }
 .contact-form-disclosure > summary > span {
@@ -1355,7 +1355,7 @@ input[type="radio"] {
   width: 100%;
   color: white;
   border: 0;
-  border-bottom: 1px solid #9bafff;
+  border-bottom: 1px solid var(--blue-bright);
   background: transparent;
   padding: 12px 0;
   border-radius: 0;
@@ -1369,11 +1369,11 @@ input[type="radio"] {
 }
 .form-footer small {
   font-size: 12px;
-  color: #c0d0ff;
+  color: var(--blue-light);
 }
 .form-footer button {
   background: white;
-  color: #1c43d8;
+  color: var(--blue-deep);
 }
 .contact footer {
   padding: 35px 0;
@@ -1387,7 +1387,7 @@ input[type="radio"] {
 .contact footer > a:last-child {
   font-family: var(--mono);
   font-size: 10px;
-  color: #c1cfff;
+  color: var(--blue-light);
 }
 summary::-webkit-details-marker {
   display: none;
@@ -2176,8 +2176,8 @@ dialog::backdrop {
   background: #ffffff04;
 }
 /* Keep the Laís assistant accents in sync with the selected portfolio palette. */
-body[data-theme] .lais-mini-orb canvas,
-body[data-theme] .lais-orb canvas {
+body[data-theme] .lais-mini-orb,
+body[data-theme] .lais-orb {
   filter: hue-rotate(var(--lais-hue)) saturate(1.16);
 }
 body[data-theme] .lais-primary:not(:disabled),
