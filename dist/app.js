@@ -236,7 +236,7 @@ document.querySelectorAll(".project-disclosure").forEach((article) => {
 document.body.classList.add("disclosures-ready", "scroll-enhanced");
 
 const revealElements = document.querySelectorAll(
-  ".section-top,.feature-project,.engineering-heading,.engineering-columns article,.about-photo,.about-text,.trajectory-header,.timeline article,.cert-heading,.certificate",
+  ".section-top,.feature-project,.method-heading,.method-route,.method-detail,.engineering-heading,.engineering-columns article,.about-photo,.about-text,.trajectory-header,.timeline article,.cert-heading,.certificate",
 );
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(
@@ -252,8 +252,8 @@ if ("IntersectionObserver" in window) {
   );
   revealElements.forEach((element, index) => {
     element.classList.add("reveal");
-    if (element.matches(".certificate,.engineering-columns article"))
-      element.style.setProperty("--reveal-delay", (index % 3) * 80 + "ms");
+    if (element.matches(".certificate,.engineering-columns article,.method-stop"))
+      element.style.setProperty("--reveal-delay", (index % 3) * 95 + "ms");
     observer.observe(element);
   });
 }
@@ -263,6 +263,15 @@ const projectImages = [...document.querySelectorAll(".project-surface > img")];
 const system = document.querySelector(".system-visual");
 const orbits = [...document.querySelectorAll(".system-orbit")];
 const statementLines = [...document.querySelectorAll(".statement-line")];
+const pageProgress = document.querySelector(".page-progress span");
+const methodRoute = document.querySelector(".method-route");
+const methodStops = [...document.querySelectorAll("[data-method-step]")];
+const methodDetail = document.querySelector("#method-detail");
+const methodSteps = [
+  ["01 / O CONTEXTO", "Começo entendendo para quem a experiência existe e qual problema precisa desaparecer — antes de escolher a ferramenta."],
+  ["02 / A CONSTRUÇÃO", "Desenho um caminho que une interface e lógica. Cada tecnologia entra com propósito, e cada estado da experiência tem uma razão para existir."],
+  ["03 / O REFINO", "Reviso os detalhes que fazem diferença no uso real: acessibilidade, desempenho, respostas a erros e a sensação de que tudo simplesmente funciona."],
+];
 const clamp = (value) => Math.max(0, Math.min(1, value));
 let systemVisible = false;
 const refreshSystemActivity = () =>
@@ -294,6 +303,59 @@ system.addEventListener("pointerleave", () => {
   system.style.setProperty("--core-y", "0deg");
 });
 let scrollFrame = 0;
+function selectMethodStep(index) {
+  const [label, copy] = methodSteps[index];
+  methodStops.forEach((button, i) => {
+    const active = i === index;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  methodRoute.style.setProperty("--route-progress", String(index / 2));
+  methodDetail.classList.remove("detail-changed");
+  requestAnimationFrame(() => {
+    methodDetail.querySelector(".method-detail-index").textContent = label;
+    methodDetail.querySelector("p").textContent = copy;
+    methodDetail.classList.add("detail-changed");
+  });
+}
+methodStops.forEach((button) =>
+  button.addEventListener("click", () =>
+    selectMethodStep(Number(button.dataset.methodStep)),
+  ),
+);
+const methodObserver = new IntersectionObserver(([entry]) => {
+  methodRoute.classList.toggle("route-in-view", entry.isIntersecting);
+});
+methodObserver.observe(methodRoute);
+const projectSurfaces = [...document.querySelectorAll(".project-surface")];
+projectSurfaces.forEach((surface) => {
+  surface.addEventListener("pointermove", (event) => {
+    if (isMotionPaused() || event.pointerType !== "mouse") return;
+    const rect = surface.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    surface.style.setProperty(
+      "--surface-tilt-x",
+      (-y * 3.8).toFixed(2) + "deg",
+    );
+    surface.style.setProperty(
+      "--surface-tilt-y",
+      (x * 4.8).toFixed(2) + "deg",
+    );
+    surface.style.setProperty(
+      "--surface-glow-x",
+      ((x + 0.5) * 100).toFixed(1) + "%",
+    );
+    surface.style.setProperty(
+      "--surface-glow-y",
+      ((y + 0.5) * 100).toFixed(1) + "%",
+    );
+  });
+  surface.addEventListener("pointerleave", () => {
+    surface.style.setProperty("--surface-tilt-x", "0deg");
+    surface.style.setProperty("--surface-tilt-y", "0deg");
+  });
+});
 function updateScroll() {
   scrollFrame = 0;
   const paused = isMotionPaused();
@@ -309,6 +371,9 @@ function updateScroll() {
     line.style.setProperty("--line-blur", (1 - eased) * 7 + "px");
   }
   const heroProgress = Math.min(scrollY / hero.offsetHeight, 1);
+  const pageLength = document.documentElement.scrollHeight - innerHeight || 1;
+  pageProgress.style.transform =
+    "scaleX(" + clamp(scrollY / pageLength) + ")";
   heroCopy.style.transform = paused
     ? ""
     : "translate3d(0," + heroProgress * 100 + "px,0)";
@@ -340,6 +405,11 @@ function updateScroll() {
         "translate(-50%,-50%) rotate(" + rotation + "deg)";
     });
   }
+  const routeTop = methodRoute.getBoundingClientRect().top;
+  const routeProgress = paused
+    ? 1
+    : clamp((innerHeight * 0.82 - routeTop) / (innerHeight * 0.55));
+  methodRoute.style.setProperty("--scroll-ink", String(routeProgress));
 }
 function scheduleScroll() {
   if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll);

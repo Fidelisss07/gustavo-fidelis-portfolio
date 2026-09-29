@@ -72,7 +72,8 @@
   transition: transform 0.8s var(--ease);
 }
 .disclosures-ready .project-disclosure:not(.is-expanded) .project-surface {
-  transform: translateY(24px) scale(0.985);
+  transform: perspective(1200px) translateY(24px) scale(0.985)
+    rotateX(var(--surface-tilt-x, 0deg)) rotateY(var(--surface-tilt-y, 0deg));
 }
 .project-acf .project-surface > img {
   object-position: 65% 50%;

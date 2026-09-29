@@ -61,6 +61,7 @@
       </details>
       <a class="nav-contact" href="#contato">Vamos conversar <span>↗</span></a>
     </header>
+    <div class="page-progress" aria-hidden="true"><span></span></div>
     <main id="main">
       <section class="hero" id="inicio" aria-labelledby="hero-title">
         <div class="hero-ambient" aria-hidden="true"></div>
@@ -101,6 +102,31 @@
         >
           Ⅱ
         </button>
+      </section>
+      <section class="method section-shell" id="metodo" aria-labelledby="method-title">
+        <div class="method-heading">
+          <p class="section-kicker">UM BOM PRODUTO NÃO ACONTECE POR ACASO</p>
+          <h2 id="method-title">Da primeira pergunta<br /><span>ao último detalhe.</span></h2>
+          <p>Um jeito de trabalhar que conecta intenção, decisões técnicas e a experiência que chega às pessoas.</p>
+        </div>
+        <div class="method-route" style="--route-progress: 0" role="group" aria-label="Etapas de desenvolvimento de um produto">
+          <svg class="desktop-route" viewBox="0 0 1000 160" preserveAspectRatio="none" aria-hidden="true">
+            <path class="route-track" pathLength="1" d="M32 112 C185 10 296 10 366 80 S558 153 660 80 S828 8 968 84" />
+            <path class="route-active" pathLength="1" d="M32 112 C185 10 296 10 366 80 S558 153 660 80 S828 8 968 84" />
+          </svg>
+          <svg class="mobile-route" viewBox="0 0 100 400" preserveAspectRatio="none" aria-hidden="true">
+            <path class="route-track" pathLength="1" d="M22 8 C70 48 70 68 34 118 S75 178 48 202 S24 253 62 288 S56 350 26 392" />
+            <path class="route-active" pathLength="1" d="M22 8 C70 48 70 68 34 118 S75 178 48 202 S24 253 62 288 S56 350 26 392" />
+          </svg>
+          <button class="method-stop is-active" type="button" data-method-step="0" aria-pressed="true" aria-controls="method-detail"><span>01</span><strong>Entender</strong><small>Contexto antes do código</small></button>
+          <button class="method-stop" type="button" data-method-step="1" aria-pressed="false" aria-controls="method-detail"><span>02</span><strong>Construir</strong><small>Forma com intenção</small></button>
+          <button class="method-stop" type="button" data-method-step="2" aria-pressed="false" aria-controls="method-detail"><span>03</span><strong>Refinar</strong><small>Pronto para pessoas</small></button>
+        </div>
+        <article class="method-detail" id="method-detail" aria-live="polite" aria-atomic="true">
+          <span class="method-detail-index">01 / O CONTEXTO</span>
+          <p>Começo entendendo para quem a experiência existe e qual problema precisa desaparecer — antes de escolher a ferramenta.</p>
+          <span class="method-detail-mark" aria-hidden="true">↗</span>
+        </article>
       </section>
       <section
         class="manifesto section-shell"

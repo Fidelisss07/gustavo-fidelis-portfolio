@@ -18,6 +18,7 @@
   const fragment = `
     precision mediump float;
     varying vec3 worldPosition; varying vec3 worldNormal;
+    uniform vec2 pointerLight;
     uniform vec3 ceilingLight; uniform vec3 accentEdge; uniform vec3 accentFloor;
     uniform vec3 materialTint; uniform vec3 fresnelTint; uniform vec3 ambientTint;
     uniform float facetMaterial;
@@ -25,9 +26,9 @@
       vec3 c=vec3(.012,.019,.035);
       float ceiling=smoothstep(.05,.45,r.y);
       c+=ceilingLight*ceiling;
-      float softbox=pow(max(0.,dot(r,normalize(vec3(-.6,1.,1.)))),10.);
+      float softbox=pow(max(0.,dot(r,normalize(vec3(pointerLight.x,1.+pointerLight.y,1.)))),10.);
       c+=vec3(2.5,2.7,3.0)*softbox;
-      float strip=exp(-pow((r.x+.38)*15.,2.))*smoothstep(-.65,-.1,r.y);
+      float strip=exp(-pow((r.x+pointerLight.x*.24+.38)*15.,2.))*smoothstep(-.65,-.1,r.y);
       c+=vec3(3.0,3.15,3.4)*strip;
       float edge=pow(max(0.,dot(r,normalize(vec3(1.,.25,-.6)))),7.);
       c+=accentEdge*edge;
@@ -132,6 +133,7 @@
     gl.STATIC_DRAW,
   );
   const modelLocation = gl.getUniformLocation(program, "model"),
+    pointerLightLocation = gl.getUniformLocation(program, "pointerLight"),
     projectionLocation = gl.getUniformLocation(program, "projection"),
     uniforms = Object.fromEntries(
       ["ceilingLight", "accentEdge", "accentFloor", "materialTint", "fresnelTint", "ambientTint", "facetMaterial"].map(
@@ -399,16 +401,18 @@
   function draw() {
     const moving = !paused();
     const scroll = moving ? Math.min(scrollY / innerHeight, 1) : 0;
-    currentX += (pointerX - currentX) * 0.045;
-    currentY += (pointerY - currentY) * 0.045;
+    currentX += (pointerX - currentX) * 0.075;
+    currentY += (pointerY - currentY) * 0.075;
     const model = multiply(
       multiply(
         rz(-0.5 + scroll * 0.35 + (moving ? Math.sin(elapsed * 0.34) * 0.06 : 0)),
-        ry(0.35 + (moving ? elapsed * 0.22 + currentX * 0.3 : 0)),
+        ry(0.35 + (moving ? elapsed * 0.22 + currentX * 0.9 : 0)),
       ),
-      rx(0.55 + (moving ? currentY * 0.22 + scroll * 0.6 + Math.sin(elapsed * 0.46) * 0.09 : 0)),
+      rx(0.55 + (moving ? currentY * 0.62 + scroll * 0.6 + Math.sin(elapsed * 0.46) * 0.09 : 0)),
     );
+    if (moving) model[13] += Math.sin(elapsed * 0.68) * 0.06;
     gl.uniformMatrix4fv(modelLocation, false, model);
+    gl.uniform2f(pointerLightLocation, currentX * 1.4, -currentY * 0.8);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
   }
@@ -453,14 +457,25 @@
       raf = requestAnimationFrame(frame);
     } else if (paused()) draw();
   }
-  stage.addEventListener("pointermove", (e) => {
-    const r = stage.getBoundingClientRect();
-    pointerX = (e.clientX - r.left) / r.width - 0.5;
-    pointerY = (e.clientY - r.top) / r.height - 0.5;
+  const hero = stage.closest(".hero");
+  hero.addEventListener("pointermove", (e) => {
+    if (e.pointerType === "touch") return;
+    const r = hero.getBoundingClientRect();
+    pointerX = Math.max(-0.5, Math.min(0.5, (e.clientX - r.left) / r.width - 0.5));
+    pointerY = Math.max(-0.5, Math.min(0.5, (e.clientY - r.top) / r.height - 0.5));
+    if (!paused())
+      hero.style.setProperty(
+        "--hero-pointer-x",
+        (pointerX * 28).toFixed(1) + "px",
+      );
   });
-  stage.addEventListener("pointerleave", () => {
+  hero.addEventListener("pointerleave", () => {
     pointerX = 0;
     pointerY = 0;
+    hero.style.setProperty("--hero-pointer-x", "0px");
+  });
+  document.addEventListener("portfolio:motion", () => {
+    if (paused()) hero.style.setProperty("--hero-pointer-x", "0px");
   });
   new ResizeObserver(resize).observe(canvas);
   new IntersectionObserver(
