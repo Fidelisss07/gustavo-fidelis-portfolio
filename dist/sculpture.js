@@ -340,6 +340,11 @@
     const id = material[theme] ? theme : "blue";
     if (id === activeTheme) return;
     activeTheme = id;
+    stage.classList.remove("theme-changing");
+    void stage.offsetWidth;
+    stage.classList.add("theme-changing");
+    clearTimeout(stage.themePulseTimer);
+    stage.themePulseTimer = setTimeout(() => stage.classList.remove("theme-changing"), 1050);
     const colors = material[id];
     for (const [name, value] of Object.entries(colors))
       name === "facetMaterial" ? gl.uniform1f(uniforms[name], value) : gl.uniform3fv(uniforms[name], value);
@@ -468,14 +473,23 @@
         "--hero-pointer-x",
         (pointerX * 28).toFixed(1) + "px",
       );
+    if (!paused())
+      hero.style.setProperty(
+        "--hero-pointer-y",
+        (pointerY * 20).toFixed(1) + "px",
+      );
   });
   hero.addEventListener("pointerleave", () => {
     pointerX = 0;
     pointerY = 0;
     hero.style.setProperty("--hero-pointer-x", "0px");
+    hero.style.setProperty("--hero-pointer-y", "0px");
   });
   document.addEventListener("portfolio:motion", () => {
-    if (paused()) hero.style.setProperty("--hero-pointer-x", "0px");
+    if (paused()) {
+      hero.style.setProperty("--hero-pointer-x", "0px");
+      hero.style.setProperty("--hero-pointer-y", "0px");
+    }
   });
   new ResizeObserver(resize).observe(canvas);
   new IntersectionObserver(

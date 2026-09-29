@@ -74,10 +74,24 @@ function showDialog(html) {
 function openProject(id) {
   const p = projects.find((project) => project.id === id);
   if (!p) return;
+  const comparisonScenes = {
+    debugarena: "debugarena-scene.jpg",
+    amx: "amxwatch-scene.webp",
+    acf: "acf-scene.webp",
+    milecar: "milecar-scene.webp",
+  };
+  const scene = comparisonScenes[p.id];
+  const comparison = scene
+    ? `<section class="case-compare" aria-label="Comparação visual do projeto"><div class="case-compare-frame" style="--compare-position:50%"><img class="compare-scene" src="assets/${scene}" alt="Imagem de apresentação de ${escapeHTML(p.name)}" loading="lazy"><div class="compare-identity"><img src="assets/${escapeHTML(p.image)}" alt="Identidade visual de ${escapeHTML(p.name)}" loading="lazy"></div><span class="compare-divider" aria-hidden="true"></span><input data-compare-range type="range" min="12" max="88" value="50" aria-label="Arraste para comparar identidade visual e imagem do projeto"></div><div class="case-compare-legend"><span>Identidade visual</span><span>Imagem do projeto</span></div></section>`
+    : "";
   showDialog(
-    `<p class="section-kicker">ESTUDO DE CASO / ${escapeHTML(p.tags[0])}</p><h2 id="dialog-title">${escapeHTML(p.name)}</h2><p class="dialog-intro">${escapeHTML(p.description)}</p><div class="dialog-tags">${p.tags.map((tag) => `<span>${escapeHTML(tag)}</span>`).join("")}</div><div class="case-blocks">${p.blocks.map((b) => `<section><h3>${escapeHTML(b.title)}</h3><p>${escapeHTML(b.text)}</p></section>`).join("")}</div><p class="case-status"><strong>Situação registrada no portfólio original</strong>${escapeHTML(p.status)}</p><div class="dialog-links"><a class="button-primary" href="${p.url}" target="_blank" rel="noopener">Abrir projeto ↗</a>${p.repo ? `<a class="inline-link" href="${p.repo}" target="_blank" rel="noopener">Código no GitHub ↗</a>` : '<span class="private-repo">Repositório privado</span>'}</div>`,
+    `<p class="section-kicker">ESTUDO DE CASO / ${escapeHTML(p.tags[0])}</p><h2 id="dialog-title">${escapeHTML(p.name)}</h2><p class="dialog-intro">${escapeHTML(p.description)}</p><div class="dialog-tags">${p.tags.map((tag) => `<span>${escapeHTML(tag)}</span>`).join("")}</div>${comparison}<div class="case-blocks">${p.blocks.map((b, index) => `<section style="--case-index:${index}"><h3>${escapeHTML(b.title)}</h3><p>${escapeHTML(b.text)}</p></section>`).join("")}</div><p class="case-status"><strong>Situação registrada no portfólio original</strong>${escapeHTML(p.status)}</p><div class="dialog-links"><a class="button-primary" href="${p.url}" target="_blank" rel="noopener">Abrir projeto ↗</a>${p.repo ? `<a class="inline-link" href="${p.repo}" target="_blank" rel="noopener">Código no GitHub ↗</a>` : '<span class="private-repo">Repositório privado</span>'}</div>`,
   );
 }
+dialogContent.addEventListener("input", (event) => {
+  const range = event.target.closest("[data-compare-range]");
+  if (range) range.parentElement.style.setProperty("--compare-position", `${range.value}%`);
+});
 document.addEventListener("click", (event) => {
   const toggle = event.target.closest("[data-toggle-project]");
   if (toggle) {
@@ -356,6 +370,100 @@ projectSurfaces.forEach((surface) => {
     surface.style.setProperty("--surface-tilt-y", "0deg");
   });
 });
+
+// A timeline gains a quiet progress rail as its milestones enter the viewport.
+const timeline = document.querySelector(".timeline");
+const timelineRail = document.createElement("span");
+timelineRail.className = "timeline-rail";
+timelineRail.setAttribute("aria-hidden", "true");
+timeline.prepend(timelineRail);
+const timelineItems = [...timeline.querySelectorAll("article")];
+
+// Certificate artwork is a preview, while the existing click still opens its full image.
+document.querySelectorAll(".certificate").forEach((card) => {
+  const certificate = certificates[Number(card.dataset.certificate)];
+  if (!certificate) return;
+  const preview = document.createElement("img");
+  preview.className = "certificate-peek";
+  preview.src = `assets/${certificate.image}`;
+  preview.alt = "";
+  preview.setAttribute("aria-hidden", "true");
+  preview.loading = "lazy";
+  card.insertBefore(preview, card.querySelector(".cert-arrow"));
+});
+
+// Laís's suggested questions follow the content the visitor is currently exploring.
+const questionButtons = [...document.querySelectorAll(".lais-questions [data-lais-question]")];
+const questionSets = {
+  geral: [["Projetos em destaque", "Quais projetos mostram melhor as habilidades do Gustavo?"], ["Formação e experiência", "Qual é a formação e a experiência profissional do Gustavo?"], ["Vamos conversar?", "Como entro em contato com o Gustavo?"]],
+  projetos: [["Stack técnica", "Quais tecnologias o Gustavo usa nos projetos?"], ["Desafio maior", "Qual foi um desafio técnico marcante nos projetos?"], ["Projeto favorito", "Pode me contar sobre os projetos do Gustavo?"]],
+  metodo: [["Decisões técnicas", "Como o Gustavo decide quais tecnologias usar?"], ["Acessibilidade", "Como o Gustavo cuida dos detalhes e da acessibilidade?"], ["IA no fluxo", "Como a inteligência artificial participa do trabalho do Gustavo?"]],
+  processo: [["Stack e dados", "Quais tecnologias e bancos de dados aparecem nos projetos?"], ["Qualidade", "Como o Gustavo pensa em desempenho e acessibilidade?"], ["Uso de IA", "Como o Gustavo usa inteligência artificial no desenvolvimento?"]],
+  sobre: [["Sobre Gustavo", "Pode me contar sobre o Gustavo?"], ["Experiência prática", "Que experiências práticas o Gustavo já teve?"], ["Currículo", "Onde posso ver o currículo do Gustavo?"]],
+  trajetoria: [["Formação", "Qual é a formação acadêmica do Gustavo?"], ["Experiência", "Qual é a experiência profissional do Gustavo?"], ["Certificados", "Quais certificados o Gustavo possui?"]],
+};
+let activeQuestionSet = "geral";
+function setQuestionSet(key) {
+  if (!questionSets[key] || key === activeQuestionSet) return;
+  activeQuestionSet = key;
+  questionButtons.forEach((button, index) => {
+    const [label, question] = questionSets[key][index];
+    button.textContent = label;
+    button.dataset.laisQuestion = question;
+  });
+}
+if ("IntersectionObserver" in window) {
+  const sectionObserver = new IntersectionObserver((entries) => {
+    const active = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (active) setQuestionSet(active.target.dataset.questionContext);
+  }, { threshold: [0.15, 0.35, 0.6] });
+  [["#projetos", "projetos"], ["#metodo", "metodo"], ["#processo", "processo"], ["#sobre", "sobre"], ["#trajetoria", "trajetoria"]].forEach(([selector, key]) => {
+    const section = document.querySelector(selector);
+    section.dataset.questionContext = key;
+    sectionObserver.observe(section);
+  });
+}
+
+// The pointer accent supplements, but never replaces, the native cursor.
+const cursorSignal = document.createElement("span");
+cursorSignal.className = "cursor-signal";
+cursorSignal.setAttribute("aria-hidden", "true");
+document.body.append(cursorSignal);
+const finePointer = matchMedia("(hover: hover) and (pointer: fine)");
+if (finePointer.matches) {
+  let cursorX = innerWidth / 2;
+  let cursorY = innerHeight / 2;
+  let cursorFrame = 0;
+  addEventListener("pointermove", (event) => {
+    if (event.pointerType !== "mouse") return;
+    cursorX = event.clientX;
+    cursorY = event.clientY;
+    if (cursorFrame) return;
+    cursorFrame = requestAnimationFrame(() => {
+      cursorSignal.style.setProperty("--cursor-x", `${cursorX}px`);
+      cursorSignal.style.setProperty("--cursor-y", `${cursorY}px`);
+      cursorSignal.classList.add("cursor-visible");
+      cursorFrame = 0;
+    });
+  }, { passive: true });
+  document.addEventListener("pointerover", (event) => {
+    if (event.target.closest("a,button,[role=button],input[type=range]")) cursorSignal.classList.add("cursor-over-control");
+  });
+  document.addEventListener("pointerout", (event) => {
+    if (event.target.closest("a,button,[role=button],input[type=range]")) cursorSignal.classList.remove("cursor-over-control");
+  });
+  document.addEventListener("pointerleave", () => cursorSignal.classList.remove("cursor-visible"));
+}
+
+// Contact receives one restrained arrival cue; the decoration is static outside the viewport.
+const contactSection = document.querySelector("#contato");
+if ("IntersectionObserver" in window) {
+  const contactObserver = new IntersectionObserver(([entry]) => {
+    contactSection.classList.toggle("contact-in-view", entry.isIntersecting);
+  }, { threshold: 0.2 });
+  contactObserver.observe(contactSection);
+}
+
 function updateScroll() {
   scrollFrame = 0;
   const paused = isMotionPaused();
@@ -374,6 +482,15 @@ function updateScroll() {
   const pageLength = document.documentElement.scrollHeight - innerHeight || 1;
   pageProgress.style.transform =
     "scaleX(" + clamp(scrollY / pageLength) + ")";
+  const timelineRect = timeline.getBoundingClientRect();
+  const timelineProgress = paused ? 1 : clamp((innerHeight * 0.82 - timelineRect.top) / (timelineRect.height + innerHeight * 0.12));
+  timeline.style.setProperty("--timeline-progress", String(timelineProgress));
+  let activeMilestone = -1;
+  timelineItems.forEach((item, index) => {
+    const rect = item.getBoundingClientRect();
+    if (rect.top <= innerHeight * 0.56 && rect.bottom >= innerHeight * 0.28) activeMilestone = index;
+  });
+  timelineItems.forEach((item, index) => item.classList.toggle("timeline-active", index === activeMilestone));
   heroCopy.style.transform = paused
     ? ""
     : "translate3d(0," + heroProgress * 100 + "px,0)";
