@@ -61,5 +61,8 @@ test("the hero sculpture uses clearly visible continuous movement", () => {
   assert.match(sculpture, /elapsed \* 0\.22 \+ currentX/);
   assert.match(sculpture, /Math\.sin\(elapsed \* 0\.34\)/);
   assert.match(sculpture, /Math\.sin\(elapsed \* 0\.46\)/);
+  assert.match(sculpture, /function inView\(\)[\s\S]*?canvas\.getBoundingClientRect\(\)[\s\S]*?innerHeight/);
+  assert.match(sculpture, /window\.addEventListener\("pageshow", start\)/);
+  assert.match(sculpture, /window\.addEventListener\("scroll", start/);
   assert.match(sculpture, /prefers-reduced-motion: reduce/);
 });

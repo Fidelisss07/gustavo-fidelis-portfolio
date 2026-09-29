@@ -206,7 +206,6 @@
     pointerY = 0,
     currentX = 0,
     currentY = 0,
-    visible = true,
     raf = 0,
     last = 0,
     elapsed = 0,
@@ -413,9 +412,14 @@
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
   }
+  function inView() {
+    const rect = canvas.getBoundingClientRect();
+    return rect.bottom > -50 && rect.top < innerHeight + 50 &&
+      rect.right > -50 && rect.left < innerWidth + 50;
+  }
   function frame(now) {
     raf = 0;
-    if (!visible || document.hidden || paused()) return;
+    if (!inView() || document.hidden || paused()) return;
     const shouldDraw = now - last >= 32;
     const delta = Math.min((now - last) / 1000, 0.05);
     elapsed += delta;
@@ -444,7 +448,7 @@
     raf = requestAnimationFrame(frame);
   }
   function start() {
-    if (!raf && visible && !document.hidden && !paused()) {
+    if (!raf && inView() && !document.hidden && !paused()) {
       last = performance.now();
       raf = requestAnimationFrame(frame);
     } else if (paused()) draw();
@@ -461,8 +465,7 @@
   new ResizeObserver(resize).observe(canvas);
   new IntersectionObserver(
     ([entry]) => {
-      visible = entry.isIntersecting;
-      if (!visible && raf) {
+      if (!entry.isIntersecting && raf) {
         cancelAnimationFrame(raf);
         raf = 0;
       }
@@ -473,6 +476,10 @@
   document.addEventListener("visibilitychange", start);
   document.addEventListener("portfolio:motion", start);
   reduced.addEventListener("change", start);
+  window.addEventListener("pageshow", start);
+  window.addEventListener("focus", start);
+  window.addEventListener("scroll", start, { passive: true });
+  window.addEventListener("resize", start, { passive: true });
   canvas.addEventListener("webglcontextlost", (event) => {
     event.preventDefault();
     if (raf) cancelAnimationFrame(raf);
