@@ -1,6 +1,6 @@
 {
-  "enabled": false,
-  "agentId": "",
-  "maxDurationSeconds": 180
+  "enabled": true,
+  "agentId": "agent_7001m3jjb6fzfgga66drpdhv3pr2",
+  "maxDurationSeconds": 180,
+  "securedSessions": true
 }
-

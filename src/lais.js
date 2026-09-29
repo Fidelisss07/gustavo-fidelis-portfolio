@@ -1,5 +1,7 @@
 import { createSessionController } from "./lais-session.js";
+import { mountLaisVisual } from "./lais-visual.js";
 const panel = document.querySelector("#lais-dialog");
+mountLaisVisual(panel);
 const launcher = document.querySelector("#lais-launcher");
 const status = document.querySelector("#lais-status");
 const transcript = document.querySelector("#lais-transcript");
@@ -28,13 +30,29 @@ const controller = createSessionController({
   connect: async (options, stillWanted) => {
     const { Conversation } = await import("@elevenlabs/client");
     if (!stillWanted()) throw Error("cancelled");
+    if (config?.privateTest || config?.securedSessions) {
+      if (config.privateTest && !["localhost", "127.0.0.1"].includes(location.hostname))
+        throw Error("Private tests require localhost");
+      const response = await fetch("/api/lais-session?mode=" + (options.textOnly ? "text" : "voice"), {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        signal: AbortSignal.timeout(15000),
+      });
+      if (!response.ok) throw Error("Private session unavailable");
+      const credentials = await response.json();
+      if (!stillWanted()) throw Error("cancelled");
+      delete options.agentId;
+      if (options.textOnly) options.signedUrl = credentials.signedUrl;
+      else options.conversationToken = credentials.conversationToken;
+    }
     return Conversation.startSession(options);
   },
   onState: updateState,
   onError: (code) => {
     notice.textContent = errors[code] || errors.connection;
   },
-  onMessage: ({ message, role, source, event_id }) => {
+  onMessage: renderMessage,
+});
+function renderMessage({ message, role, source, event_id }) {
     if (!message) return;
     const speaker = role === "user" || source === "user" ? "Você" : "Laís";
     const key = event_id === undefined ? null : speaker + "-" + event_id;
@@ -57,8 +75,7 @@ const controller = createSessionController({
     while (transcript.children.length > 50)
       transcript.firstElementChild.remove();
     transcript.scrollTop = transcript.scrollHeight;
-  },
-});
+}
 function updateState(state) {
   panel.dataset.state = state;
   const busy = state !== "idle";
@@ -99,7 +116,7 @@ launcher.addEventListener("click", async () => {
       config = { enabled: false };
     }
     notice.textContent = config.enabled
-      ? ""
+      ? (config.privateTest ? "Teste privado, não comercial · Voz por elevenlabs.io · Até 3 minutos por conversa." : "")
       : "A Laís ainda não está conectada à ElevenLabs. A conversa será liberada após a configuração da conta e da voz. Nenhuma mensagem ou áudio é enviado neste estado.";
   }
   updateState("idle");
@@ -162,6 +179,7 @@ form.addEventListener("submit", (event) => {
   const text = input.value.trim();
   if (!text || !controller.active()) return;
   controller.send(text.slice(0, 1000));
+  renderMessage({ message: text.slice(0, 1000), role: "user" });
   input.value = "";
 });
 document.querySelectorAll("[data-lais-question]").forEach((button) =>
@@ -169,6 +187,7 @@ document.querySelectorAll("[data-lais-question]").forEach((button) =>
     const text = button.dataset.laisQuestion;
     if (controller.active()) {
       controller.send(text);
+      renderMessage({ message: text, role: "user" });
     } else {
       notice.textContent = config?.enabled
         ? "Inicie uma conversa para perguntar: " + text

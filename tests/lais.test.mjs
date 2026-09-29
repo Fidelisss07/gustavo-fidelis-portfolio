@@ -147,6 +147,10 @@ test("public client configuration never contains a secret", () => {
     "agentId",
     "enabled",
     "maxDurationSeconds",
+    "securedSessions",
   ]);
+  assert.equal(c.enabled, true);
+  assert.equal(c.securedSessions, true);
+  assert.match(c.agentId, /^agent_/);
   assert.equal(c.maxDurationSeconds, 180);
 });
