@@ -27,5 +27,5 @@ test("scroll progress and reduced-motion-aware visual refinements exist", () => 
   assert.match(html, /class="page-progress"/);
   assert.match(app, /pageProgress\.style\.transform =[\s\S]{0,35}"scaleX\(/);
   assert.match(styles, /\.project-surface \{ transform: none !important; \}/);
-  assert.match(styles, /stroke-dashoffset: calc\(1 - var\(--route-progress\)\)/);
+  assert.match(styles, /stroke-dasharray: 200%;[\s\S]*stroke-dashoffset: calc\(\(1 - var\(--route-progress\)\) \* 200%\)/);
 });

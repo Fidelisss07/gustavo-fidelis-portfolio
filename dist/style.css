@@ -478,8 +478,8 @@ h1 {
 .route-active {
   stroke: var(--blue);
   stroke-width: 1.8;
-  stroke-dasharray: 1;
-  stroke-dashoffset: calc(1 - var(--route-progress));
+  stroke-dasharray: 200%;
+  stroke-dashoffset: calc((1 - var(--route-progress)) * 200%);
   filter: drop-shadow(0 0 5px var(--blue-halo));
   transition: stroke-dashoffset 1.2s var(--ease);
 }
