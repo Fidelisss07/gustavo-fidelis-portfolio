@@ -90,11 +90,13 @@ function renderProject(f, i, expanded) {
 const projectHTML =
   featured.map((f, i) => renderProject(f, i, true)).join("") +
   `<div class="other-work"><div class="other-work-heading"><span>OUTRAS EXPLORAÇÕES</span><span>04 PROJETOS</span></div><div class="project-list">${explorations.map((f, i) => renderProject(f, i + 2, false)).join("")}</div></div>`;
-const certificateHTML = certificates
-  .map(
-    (c, i) =>
-      `<a class="certificate" href="assets/${c.image}" data-certificate="${i}" aria-label="Abrir certificado: ${escape(c.name)}"><span><strong>${escape(c.name)}</strong><small>${i === 0 ? "FIAP · 80 HORAS · 2026" : `DEV CLUB · ${escape(c.meta)}`}</small></span><span class="cert-arrow" aria-hidden="true">↗</span></a>`,
-  )
+const certificateHTML = ["FIAP", "DEV CLUB"]
+  .map((issuer) => {
+    const group = certificates.map((c, i) => ({ c, i })).filter(({ c }) => c.meta.includes(issuer));
+    return `<div class="certificate-group-heading"><h4>${issuer}</h4><span>${String(group.length).padStart(2, "0")} certificados</span></div>` + group.map(({ c, i }, position) =>
+      `<a class="certificate credential-card" href="assets/${c.image}" data-certificate="${i}" aria-label="Abrir certificado: ${escape(c.name)}"><span class="credential-document" aria-hidden="true"><img src="assets/${c.image}" alt="" loading="lazy" width="320" height="180"><span class="credential-index">${String(position + 1).padStart(2, "0")} / ${String(group.length).padStart(2, "0")}</span></span><span class="credential-copy"><strong>${escape(c.name)}</strong><small>${escape(c.meta)}</small></span><span class="credential-footer"><span>Ver certificado completo</span><span class="credential-open" aria-hidden="true">↗</span></span></a>`
+    ).join("");
+  })
   .join("");
 let html = readFileSync("dist/index.html", "utf8");
 html = html
@@ -105,6 +107,10 @@ html = html
   .replace(
     /<!-- CERTIFICATES:START -->[\s\S]*?<!-- CERTIFICATES:END -->/,
     `<!-- CERTIFICATES:START -->${certificateHTML}<!-- CERTIFICATES:END -->`,
+  )
+  .replace(
+    /<!-- CERTIFICATE-COUNT -->\d+ CERTIFICADOS/,
+    `<!-- CERTIFICATE-COUNT -->${String(certificates.length).padStart(2, "0")} CERTIFICADOS`,
   );
 writeFileSync("dist/index.html", html);
-console.log("Rendered 6 projects and 9 certificates into HTML.");
+console.log(`Rendered ${projects.length} projects and ${certificates.length} certificates into HTML.`);

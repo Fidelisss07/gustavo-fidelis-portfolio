@@ -2,6 +2,23 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createSessionController } from "../src/lais-session.js";
+test("a stalled connection times out and disposes any late session", async () => {
+  let resolveConnection;
+  let ended = 0;
+  const errors = [];
+  const controller = createSessionController({
+    connect: () => new Promise(resolve => { resolveConnection = resolve; }),
+    onState() {}, onMessage() {}, onError: code => errors.push(code),
+    connectionTimeout: 10,
+  });
+  const connecting = controller.start({agentId: "test"});
+  await new Promise(resolve => setTimeout(resolve, 30));
+  assert.equal(controller.active(), false);
+  assert.deepEqual(errors, ["timeout"]);
+  resolveConnection({endSession: async () => { ended++; }});
+  assert.equal(await connecting, false);
+  assert.equal(ended, 1);
+});
 function harness(connect) {
   const states = [],
     errors = [],

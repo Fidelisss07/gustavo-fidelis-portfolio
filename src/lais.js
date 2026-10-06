@@ -1,5 +1,6 @@
 import { createSessionController } from "./lais-session.js";
 import { mountLaisVisual } from "./lais-visual.js";
+import { portfolioSessionContext } from "./lais-context.js";
 const panel = document.querySelector("#lais-dialog");
 mountLaisVisual(panel);
 const launcher = document.querySelector("#lais-launcher");
@@ -23,11 +24,22 @@ const errors = {
     "Não consegui conectar à Laís. Os créditos podem ter acabado ou o serviço pode estar indisponível. Tente novamente mais tarde ou use o contato do Gustavo.",
   microphone:
     "O microfone não foi liberado. Você pode permitir o acesso no navegador ou escolher a conversa por texto.",
+  microphoneMissing: "Não encontrei um microfone disponível. Conecte um microfone ou escolha Por texto.",
+  microphoneBusy: "Não consegui acessar o microfone. Verifique se outro aplicativo está usando o dispositivo ou escolha Por texto.",
+  timeout: "A conexão demorou mais que o esperado. Confira a permissão do microfone no navegador ou experimente Por texto.",
   duration:
     "A sessão de três minutos foi encerrada. Obrigada pela conversa! Para continuar, fale diretamente com o Gustavo.",
 };
 const controller = createSessionController({
   connect: async (options, stillWanted) => {
+    if (!options.textOnly) {
+      updateState("microphone");
+      if (!navigator.mediaDevices?.getUserMedia) throw Object.assign(new Error("Microphone unavailable"), {name: "NotFoundError"});
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      stream.getTracks().forEach(track => track.stop());
+      if (!stillWanted()) throw Error("cancelled");
+      updateState("connecting");
+    }
     const { Conversation } = await import("@elevenlabs/client");
     if (!stillWanted()) throw Error("cancelled");
     if (config?.privateTest || config?.securedSessions) {
@@ -44,7 +56,9 @@ const controller = createSessionController({
       if (options.textOnly) options.signedUrl = credentials.signedUrl;
       else options.conversationToken = credentials.conversationToken;
     }
-    return Conversation.startSession(options);
+    const session = await Conversation.startSession(options);
+    if (stillWanted()) session.sendContextualUpdate(portfolioSessionContext(window.portfolioContent));
+    return session;
   },
   onState: updateState,
   onError: (code) => {
@@ -83,17 +97,18 @@ function updateState(state) {
     {
       idle: config?.enabled ? "Pronta para conversar" : "Em configuração",
       connecting: "Conectando…",
+      microphone: "Autorize o microfone no navegador",
       listening: muted ? "Microfone pausado" : "Ouvindo você",
       speaking: "Laís está falando",
       text: "Conversa por texto",
     }[state] || state;
   startButton.hidden = busy;
   stopButton.hidden = !busy;
-  muteButton.hidden = !busy || mode === "text" || state === "connecting";
+  muteButton.hidden = !busy || mode === "text" || ["connecting", "microphone"].includes(state);
   modeButtons.forEach((b) => (b.disabled = busy));
   consent.disabled = busy;
   startButton.disabled = !config?.enabled || !consent.checked;
-  input.disabled = !busy || state === "connecting";
+  input.disabled = !busy || ["connecting", "microphone"].includes(state);
   submit.disabled = input.disabled;
   if (!busy) {
     muted = false;

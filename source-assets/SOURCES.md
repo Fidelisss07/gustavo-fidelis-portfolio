@@ -1,5 +1,7 @@
 # Imagens dos projetos
 
+- INCLUB: https://inclubs.com.br/assets/Logo/image.png — logo oficial usada na seção dedicada, obtida em 01/10/2026 e preservada sem alterações.
+
 Imagens obtidas das páginas públicas dos próprios projetos apresentados no portfólio em 27/09/2026:
 
 - DebugArena: https://debugarena-omega.vercel.app/media/mascot-poster.jpg — usada na apresentação do projeto.

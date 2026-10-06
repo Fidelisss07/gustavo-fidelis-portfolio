@@ -1405,6 +1405,48 @@ input[type="radio"] {
   font-size: 18px;
   color: #929cac;
 }
+.certificate-featured {
+  min-height: 160px;
+  padding: 22px 40% 46px 22px;
+  border-color: #c9d5ff;
+  background: linear-gradient(112deg, #fff 0%, #f8f9ff 58%, #edf1ff 100%);
+}
+.certificate-featured:hover {
+  border-color: var(--blue);
+  background: linear-gradient(112deg, #fff 0%, #f4f6ff 54%, #e6ecff 100%);
+}
+.certificate-featured strong { font-size: 14px; line-height: 1.45; }
+.certificate-featured .cert-arrow { display: none; }
+.certificate-featured .certificate-peek {
+  top: 13px;
+  right: 13px;
+  width: 34%;
+  height: calc(100% - 48px);
+  object-fit: contain;
+  background: #090a0f;
+  border: 1px solid rgba(85, 117, 255, 0.28);
+  border-radius: 8px;
+  opacity: 1;
+  transform: none;
+  box-shadow: 0 8px 24px rgba(14, 25, 65, 0.16);
+}
+.certificate-featured:hover .certificate-peek,
+.certificate-featured:focus-visible .certificate-peek {
+  opacity: 1;
+  transform: translateY(-2px) scale(1.025);
+}
+.certificate-hint {
+  position: absolute !important;
+  left: 22px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--blue-deep);
+  font: 500 9px var(--mono);
+  letter-spacing: 0.07em;
+}
+.certificate-hint span { font: 16px var(--sans); color: var(--blue); }
 .contact {
   background: var(--blue);
   color: white;
@@ -2233,6 +2275,11 @@ dialog[open]::backdrop { animation: backdrop-arrive 0.4s ease-out both; }
     min-height: 132px;
     gap: 5px;
   }
+  .certificate-featured {
+    min-height: 160px;
+    padding: 17px 38% 42px 17px;
+  }
+  .certificate-hint { left: 17px; bottom: 12px; }
   .certificate strong {
     font-size: 12px;
   }

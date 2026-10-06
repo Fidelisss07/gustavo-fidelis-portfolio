@@ -4,6 +4,7 @@ export function createSessionController({
   onMessage,
   onError,
   maxDuration = 180000,
+  connectionTimeout = 30000,
 }) {
   let session = null,
     generation = 0,
@@ -25,6 +26,11 @@ export function createSessionController({
     pending = true;
     onState("connecting");
     const current = () => token === generation;
+    timer = setTimeout(() => {
+      if (!current()) return;
+      void stop();
+      onError("timeout");
+    }, connectionTimeout);
     try {
       const created = await connect(
         {
@@ -62,6 +68,7 @@ export function createSessionController({
       }
       session = created;
       pending = false;
+      clearTimeout(timer);
       onState(textOnly ? "text" : "listening");
       timer = setTimeout(() => {
         void stop();
@@ -72,7 +79,7 @@ export function createSessionController({
       if (current()) {
         await stop();
         onError(
-          error?.name === "NotAllowedError" ? "microphone" : "connection",
+          ({NotAllowedError: "microphone", NotFoundError: "microphoneMissing", NotReadableError: "microphoneBusy"})[error?.name] || "connection",
         );
       }
       return false;

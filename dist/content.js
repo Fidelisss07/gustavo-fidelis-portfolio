@@ -183,62 +183,76 @@ window.portfolioContent = {
   certificates: [
     {
       name: "Formação Social e Sustentabilidade",
-      meta: "FIAP · 80 horas · 2026",
+      meta: "FIAP · 80 HORAS · 2026",
       image: "cert-fiap-sustentabilidade.webp",
       verify: "https://on.fiap.com.br/validar-certificado/",
     },
     {
       name: "React",
-      meta: "2026",
+      meta: "DEV CLUB · 2026",
       image: "cert-react.webp",
       verify:
         "https://devclub.curseduca.pro/verify/f954790203e46d922e851ae19a5c29b7d6c9ffee",
     },
     {
       name: "Node.js",
-      meta: "2026",
+      meta: "DEV CLUB · 2026",
       image: "cert-node.webp",
       verify:
         "https://devclub.curseduca.pro/verify/797e2e9a3a3089a539aa12b7ec6700676c49e787",
     },
     {
       name: "TypeScript — Back-end",
-      meta: "2026",
+      meta: "DEV CLUB · 2026",
       image: "cert-typescript.webp",
       verify:
         "https://devclub.curseduca.pro/verify/decd93bc96204611c3fc85acc12aede6399d094e",
     },
     {
       name: "JavaScript pt. VI — Async/Await",
-      meta: "2026",
+      meta: "DEV CLUB · 2026",
       image: "cert-js-async.webp",
       verify:
         "https://devclub.curseduca.pro/verify/81e50f21c311d3439e3a75546a50d6d3f7751396",
     },
     {
       name: "CSS — Display Grid",
-      meta: "2026",
+      meta: "DEV CLUB · 2026",
       image: "cert-css-grid.webp",
       verify:
         "https://devclub.curseduca.pro/verify/0adb5e43de52bc32e9c9383515a56d2cadbd6471",
     },
     {
       name: "JavaScript pt. V — A Nova Ordem de Dados",
-      meta: "2026",
+      meta: "DEV CLUB · 2026",
       image: "cert-javascript.webp",
       verify: "",
     },
     {
       name: "CSS Intermediário",
-      meta: "2025",
+      meta: "DEV CLUB · 2025",
       image: "cert-css.webp",
       verify: "",
     },
     {
       name: "Git & GitHub",
-      meta: "2025",
+      meta: "DEV CLUB · 2025",
       image: "cert-git.webp",
       verify: "",
+    },
+    {
+      name: "Talk Itaú — Inteligência Artificial: construindo o futuro do mercado financeiro com GenAI",
+      meta: "TALENT SUMMIT · FIAP · 1 HORA · 30/09/2026",
+      image: "cert-talent-summit-itau.jpg",
+      verify: "",
+      featured: true,
+    },
+    {
+      name: "Talk TOTVS — Agentes inteligentes: como IA está redesenhando a eficiência operacional",
+      meta: "TALENT SUMMIT · FIAP · 1 HORA · 30/09/2026",
+      image: "cert-talent-summit-totvs.jpg",
+      verify: "",
+      featured: true,
     },
   ],
 };

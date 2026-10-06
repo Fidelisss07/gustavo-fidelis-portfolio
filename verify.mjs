@@ -23,9 +23,9 @@ for (const [, url] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
   )
     errors.push(`Missing asset: ${url}`);
 }
-if (projects.length !== 6 || certificates.length !== 9)
+if (projects.length !== 6 || certificates.length !== 11)
   errors.push("Incorrect content totals");
 if (errors.length) throw Error(errors.join("\n"));
 console.log(
-  "Verified: 6 projects, 24 case-study blocks, 9 certificates, all internal anchors and local assets.",
+  "Verified: 6 projects, 24 case-study blocks, 11 certificates, all internal anchors and local assets.",
 );

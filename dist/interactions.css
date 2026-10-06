@@ -413,6 +413,78 @@
 .certificate-peek { position: absolute; z-index: 0; top: 8px; right: 8px; width: 34%; height: calc(100% - 16px); object-fit: cover; object-position: center; border-radius: 6px; opacity: 0; transform: translateY(9px) rotate(2deg) scale(.96); transition: opacity .4s, transform .55s var(--ease); }
 .certificate:hover .certificate-peek,
 .certificate:focus-visible .certificate-peek { opacity: .18; transform: translateY(0) rotate(0) scale(1); }
+.certificate-featured .certificate-peek { opacity: 1; transform: none; }
+.certificate-featured:hover .certificate-peek,
+.certificate-featured:focus-visible .certificate-peek { opacity: 1; transform: translateY(-2px) scale(1.025); }
+
+/* Dedicated INCLUB product presentation. */
+.inclub-section { padding-top: 90px; padding-bottom: 90px; }
+.inclub-heading { display: flex; justify-content: space-between; gap: 24px; align-items: center; padding-bottom: 24px; border-bottom: 1px solid #dfe3ea; }
+.inclub-heading .section-kicker { margin: 0; }
+.inclub-heading > span { font: 9px var(--mono); color: #747d8d; }
+.inclub-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 95px); align-items: center; margin: 48px 0; }
+.inclub-copy h2 { font-size: clamp(36px, 4.6vw, 70px); line-height: 1.07; font-weight: 600; letter-spacing: -.055em; margin: 0 0 26px; }
+.inclub-copy h2 em { font-style: normal; color: var(--blue-deep); }
+.inclub-intro { font-size: 18px; line-height: 1.65; max-width: 480px; }
+.inclub-description { font-size: 13px; line-height: 1.9; color: #697180; margin: 18px 0 28px; max-width: 460px; }
+.inclub-link { display: inline-flex; align-items: center; gap: 40px; border-bottom: 1px solid #a3acba; padding: 12px 0; font-size: 14px; font-weight: 600; }
+.inclub-link span { color: var(--blue-deep); font-size: 23px; }
+.inclub-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.inclub-tech span { font: 9px var(--mono); padding: 7px 10px; border: 1px solid #dfe3ea; border-radius: 20px; color: #637085; }
+.inclub-poster { position: relative; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; min-height: 450px; padding: 28px; border-radius: 20px; color: #f7f8ff; background: radial-gradient(ellipse at 110% 10%, color-mix(in srgb, var(--blue) 65%, #18142f), transparent 65%), #0e101b; }
+.inclub-poster::before { content: ''; position: absolute; z-index: -1; width: 380px; height: 380px; border: 1px solid #ffffff22; border-radius: 50%; top: 80px; right: -140px; box-shadow: 0 0 0 40px #ffffff03, 0 0 0 80px #ffffff03; }
+.inclub-poster-top, .inclub-poster-bottom { display: flex; justify-content: space-between; gap: 20px; font: 8px var(--mono); letter-spacing: .08em; color: #c8cce0; }
+.inclub-poster-top span:last-child { max-width: 135px; text-align: right; }
+.inclub-brand { display: grid; place-items: center; margin: 28px 0; }
+.inclub-brand img { display: block; width: min(100%, 340px); height: auto; object-fit: contain; }
+.inclub-poster-tagline { font-size: 19px; line-height: 1.5; letter-spacing: -.025em; margin: 0 0 36px; }
+.inclub-poster-bottom { border-top: 1px solid #ffffff25; padding-top: 18px; line-height: 1.7; }
+.inclub-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; padding-top: 28px; border-top: 1px solid #dfe3ea; }
+.inclub-pillars article > span { font: 9px var(--mono); color: var(--blue-deep); }
+.inclub-pillars h3 { font-size: 17px; letter-spacing: -.03em; margin: 14px 0 10px; }
+.inclub-pillars p { color: #697180; font-size: 12px; line-height: 1.8; }
+@media (max-width: 700px) {
+  .inclub-section { padding-top: 60px; padding-bottom: 60px; }
+  .inclub-heading > span { display: none; }
+  .inclub-layout { grid-template-columns: 1fr; margin: 30px 0; }
+  .inclub-poster { min-height: 380px; }
+  .inclub-brand img { width: min(100%, 290px); }
+  .inclub-pillars { grid-template-columns: 1fr; gap: 24px; }
+}
+
+/* A collection of credentials: every document has a visible opening action. */
+.certificates { gap: 18px; }
+.certificate-group-heading { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0 0 14px; border-bottom: 1px solid #dfe3ea; }
+.certificate-group-heading:not(:first-child) { margin-top: 30px; }
+.certificate-group-heading h4 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: .02em; }
+.certificate-group-heading > span { font: 10px var(--mono); color: #737d8e; }
+.certificate.credential-card {
+  display: flex; flex-direction: column; align-items: stretch; gap: 0;
+  min-width: 0; min-height: 0; padding: 10px; border-radius: 16px;
+  color: #181b24; border: 1px solid #dfe3ea;
+  background: #fff;
+  box-shadow: 0 6px 18px -12px #15213b24;
+  text-decoration: none;
+}
+.certificate.credential-card:hover,
+.certificate.credential-card:focus-visible {
+  background: #fff;
+  border-color: color-mix(in srgb, var(--blue) 45%, #dfe3ea); transform: translateY(-3px);
+  box-shadow: 0 12px 28px -18px #15213b40;
+}
+.certificate.credential-card:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+.credential-card > span:first-child { flex: 0; }
+.credential-document { display: grid; place-items: center; min-height: 155px; padding: 22px 36px; overflow: hidden; border-radius: 9px; background: linear-gradient(135deg, #f0f2f6, #f8f9fb); }
+.credential-document::before { content: ""; position: absolute; width: 63%; height: 75%; border: 1px solid #d9dee8; border-radius: 3px; background: #fff; transform: rotate(-4deg); }
+.credential-document img { position: relative; display: block; width: 100%; height: 130px; object-fit: contain; filter: drop-shadow(0 5px 6px #17203920); }
+.credential-index { position: absolute; bottom: 8px; right: 10px; font: 8px var(--mono); color: #737f91; }
+.credential-copy { flex: 1; padding: 20px 14px; }
+.certificate.credential-card strong { font-size: 14px; line-height: 1.6; font-weight: 600; }
+.certificate.credential-card small { color: #737d8e; font-size: 9px; line-height: 1.8; margin-top: 10px; }
+.credential-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0 14px; padding: 12px 0 4px; border-top: 1px solid #e9ecf1; font-size: 11px; font-weight: 600; color: var(--blue-deep); }
+.credential-open { display: grid; place-items: center; width: 28px; height: 28px; background: color-mix(in srgb, var(--blue) 8%, white); color: var(--blue-deep); border-radius: 50%; font-size: 18px; }
+@media (max-width: 900px) { .certificates { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .certificates { grid-template-columns: 1fr; } .certificate.credential-card { padding: 10px; } }
 
 /* Section-aware Laís suggestions remain ordinary buttons and user-controlled. */
 .lais-questions button { transition: border-color .3s, background .3s, transform .3s var(--ease); }

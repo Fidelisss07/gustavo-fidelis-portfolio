@@ -122,7 +122,7 @@ document.addEventListener("click", (event) => {
     event.preventDefault();
     const c = certificates[Number(cert.dataset.certificate)];
     showDialog(
-      `<p class="section-kicker">FORMAÇÃO COMPLEMENTAR</p><h2 id="dialog-title">${escapeHTML(c.name)}</h2><p class="dialog-intro">${Number(cert.dataset.certificate) === 0 ? "FIAP" : "Dev Club"} · ${escapeHTML(c.meta)}</p><img class="certificate-image" src="assets/${c.image}" alt="Certificado de ${escapeHTML(c.name)}"><div class="dialog-links"><a class="inline-link" href="assets/${c.image}" target="_blank" rel="noopener">Abrir imagem original ↗</a>${c.verify ? `<a class="inline-link" href="${c.verify}" target="_blank" rel="noopener">Verificar autenticidade ↗</a>` : ""}</div>${Number(cert.dataset.certificate) === 0 ? '<p class="certificate-key">Chave FIAP: EFD06F5C033939B56E8074C87D070B1D</p>' : ""}`,
+      `<p class="section-kicker">FORMAÇÃO COMPLEMENTAR</p><h2 id="dialog-title">${escapeHTML(c.name)}</h2><p class="dialog-intro">${escapeHTML(c.meta)}</p><img class="certificate-image" src="assets/${c.image}" alt="Certificado de ${escapeHTML(c.name)}"><div class="dialog-links"><a class="inline-link" href="assets/${c.image}" target="_blank" rel="noopener">Abrir imagem original ↗</a>${c.verify ? `<a class="inline-link" href="${c.verify}" target="_blank" rel="noopener">Verificar autenticidade ↗</a>` : ""}</div>${Number(cert.dataset.certificate) === 0 ? '<p class="certificate-key">Chave FIAP: EFD06F5C033939B56E8074C87D070B1D</p>' : ""}`,
     );
   }
 });
@@ -383,6 +383,7 @@ const timelineItems = [...timeline.querySelectorAll("article")];
 document.querySelectorAll(".certificate").forEach((card) => {
   const certificate = certificates[Number(card.dataset.certificate)];
   if (!certificate) return;
+  if (card.classList.contains("credential-card")) return;
   const preview = document.createElement("img");
   preview.className = "certificate-peek";
   preview.src = `assets/${certificate.image}`;

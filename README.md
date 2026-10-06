@@ -14,7 +14,7 @@ Abra http://127.0.0.1:4173. A pasta `dist` contém a versão pré-compilada e po
 
 ## Conteúdo e estrutura
 
-- `dist/index.html`: página e conteúdo principal; os seis projetos e nove certificados já constam no HTML.
+- `dist/index.html`: página e conteúdo principal; os seis projetos e onze certificados já constam no HTML.
 - `dist/style.css`: identidade visual, layouts responsivos e preferências de movimento reduzido.
 - `dist/app.js`: estudos de caso, certificados, navegação, checkout demonstrativo e envio do formulário.
 - `dist/sculpture.js`: malha de nó toroidal, shaders de reflexo de estúdio e ciclo de renderização WebGL.
